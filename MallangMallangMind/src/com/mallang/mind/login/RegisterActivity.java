@@ -52,7 +52,6 @@ public class RegisterActivity extends Activity{
 		cancleBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mDbOpenHelper.close();
 				finish();
 			}
 			
@@ -76,7 +75,6 @@ public class RegisterActivity extends Activity{
 		if( mDbOpenHelper.checkId(id) ) {
 			Toast toast = Toast.makeText(getBaseContext(), "Registered successfully", Toast.LENGTH_SHORT);
 			toast.show();
-			mDbOpenHelper.close();
 			Intent intent = new Intent(getBaseContext(), InfoRegisterActivity.class);
 			intent.putExtra("userID", idInput.getText().toString());
 			startActivity(intent);
