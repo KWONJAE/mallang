@@ -93,7 +93,13 @@ public class DbOpenHelper {
  		values.put(MallangData.CreateInfoDB.CITY, userInfo.getCity());
  		return mDB.update(MallangData.CreateInfoDB._TABLENAME, values, "_id="+userInfo.getUserID(), null) > 0;
  	}
-
+ 	public boolean checkId(String id){
+ 		Cursor c = mDB.rawQuery( "select * from "+ MallangData.CreatePWDB._TABLENAME
+ 				+ "where "+MallangData.CreatePWDB.USER_ID+"='" + id + "'" , null);
+ 		if( c.getCount()>0 )
+ 			return true;
+ 		return false;
+ 	}
  	// Delete ID
  	public boolean deleteUser(String id){
  		return mDB.delete(MallangData.CreatePWDB._TABLENAME, "USER_ID="+id, null) > 0;
