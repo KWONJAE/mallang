@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout      xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent"
+     android:orientation="vertical" >
+
+    <LinearLayout
+         android:orientation="horizontal"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:gravity="center_horizontal">
+        <TextView android:text="  닉네임: "
+             android:layout_width="wrap_content" 
+             android:layout_height="wrap_content"/>
+        <EditText android:text="" 
+             android:id="@+id/info_nick_input" 
+             android:layout_width="200px" 
+             android:layout_height="wrap_content"/>
+     </LinearLayout> 
+     <LinearLayout
+         android:orientation="horizontal"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:gravity="center_horizontal">
+        <TextView android:text="  성별: "
+             android:layout_width="wrap_content" 
+             android:layout_height="wrap_content"/>
+        <Spinner 
+             android:id="@+id/info_gender_spinner" 
+             android:layout_width="200px" 
+             android:layout_height="wrap_content"/>
+     </LinearLayout> 
+     <LinearLayout
+         android:orientation="horizontal"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:gravity="center_horizontal">
+        <TextView android:text="  생일: "
+             android:layout_width="wrap_content" 
+             android:layout_height="wrap_content"/>
+        <Button android:text="입력" 
+			  android:id="@+id/info_birth_btn" 
+			  android:layout_width="wrap_content" 
+			  android:layout_height="wrap_content"
+			  android:gravity="center_horizontal"/>
+     </LinearLayout>
+     <LinearLayout
+         android:orientation="horizontal"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:gravity="center_horizontal">
+        <TextView android:text="  국적: "
+             android:layout_width="wrap_content" 
+             android:layout_height="wrap_content"/>
+        <EditText android:text="" 
+             android:id="@+id/info_national_input" 
+             android:layout_width="200px" 
+             android:layout_height="wrap_content"/>
+     </LinearLayout>
+     <LinearLayout
+         android:orientation="horizontal"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:gravity="center_horizontal">
+        <TextView android:text="  도시: "
+             android:layout_width="wrap_content" 
+             android:layout_height="wrap_content"/>
+        <EditText android:text="" 
+             android:id="@+id/info_city_input" 
+             android:layout_width="200px" 
+             android:layout_height="wrap_content"/>
+     </LinearLayout>  
+    <LinearLayout
+	      android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="center_horizontal">
+	 <Button android:text="저장" 
+	  android:id="@+id/info_save_btn" 
+	  android:layout_width="wrap_content" 
+	  android:layout_height="wrap_content"
+	  android:gravity="center_horizontal"/>
+	 <Button android:text="건너뛰기" 
+	  android:id="@+id/info_skip_btn" 
+	  android:layout_width="wrap_content" 
+	  android:layout_height="wrap_content"
+	  android:gravity="center_horizontal"/>
+	    </LinearLayout> 
+</LinearLayout>
