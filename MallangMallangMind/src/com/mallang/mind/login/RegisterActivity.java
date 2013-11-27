@@ -66,21 +66,25 @@ public class RegisterActivity extends Activity{
 	}
 	 public void registerProcess() {
 		String id = idInput.getText().toString();
+		String pw = pwInput.getText().toString();
 		if( mDbOpenHelper.checkId(id) ) {
 			Toast toast = Toast.makeText(getBaseContext(), "Already Registered ID: " + id, Toast.LENGTH_SHORT);
 			toast.show();
 			return;
 		}
-		mDbOpenHelper.insertPW(id, nameInput.getText().toString(), pwInput.getText().toString());
-		if( mDbOpenHelper.checkId(id) ) {
+		
+		if (mDbOpenHelper.insertPW(id, nameInput.getText().toString(), pw)) {
 			Toast toast = Toast.makeText(getBaseContext(), "Registered successfully", Toast.LENGTH_SHORT);
 			toast.show();
 			Intent intent = new Intent(getBaseContext(), InfoRegisterActivity.class);
 			intent.putExtra("userID", idInput.getText().toString());
 			startActivity(intent);
 			finish();
+			return;
 		}
+		
 		Toast toast = Toast.makeText(getBaseContext(), "Can't registered please try it again", Toast.LENGTH_LONG);
 		toast.show();
+		return;
 	 }
 }

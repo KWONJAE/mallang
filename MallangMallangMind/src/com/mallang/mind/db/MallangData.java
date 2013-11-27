@@ -10,11 +10,9 @@ public final class MallangData {
 		public static final String USER_PW = "PASSWD";
 		public static final String _TABLENAME = "User_PW_TB";
 		public static final String _CREATE =
-				"CREATE TABLE " +_TABLENAME+" ("
-				+USER_ID+" TEXT NOT NULL, "+
-				USER_NM+" TEXT NOT NULL, " +
-				USER_PW+" TEXT NOT NULL," +
-						"PRIMARY KEY(USER_ID, USER_NM) );";
+				String.format("CREATE TABLE %s (_id INTEGER NOT NULL PRIMARY KEY, %s TEXT NOT NULL, "
+						+"%s TEXT NULL, %s TEXT NULL );",
+						_TABLENAME, USER_ID, USER_NM, USER_PW);
 		
 	}
 	public static final class CreateInfoDB implements BaseColumns {
@@ -28,11 +26,10 @@ public final class MallangData {
 		public static final String CITY = "CITY";
 		public static final String _TABLENAME = "User_Info_TB";
 		public static final String _CREATE =
-				String.format("CREATE TABLE %s (%s TEXT NOT NULL PRIMARY KEY, "
-						+ "%s TEXT NOT NULL, %s TEXT NULL, %s TEXT NULL, "
+				String.format("CREATE TABLE %s (_id INTEGER NOT NULL PRIMARY KEY, %s TEXT NOT NULL, "
+						+ "%s TEXT NULL, %s TEXT NULL, %s TEXT NULL, "
 						+ "%s INTEGER UNSIGNED NULL, %s INTEGER UNSIGNED NULL, "
-						+ "%s TEXT NULL, %s TEXT NULL, FOREIGN KEY(USER_ID, USER_NM) "
-						+ "REFERENCES User_PW_TB(USER_ID, USER_NM) );",_TABLENAME
+						+ "%s TEXT NULL, %s TEXT NULL );",_TABLENAME
 						, USER_ID, USER_NM, NICK_NM, GENDER, REG_DT, BIRTH_DT, NATIONAL, CITY);
 		
 	}
@@ -43,11 +40,9 @@ public final class MallangData {
 		public static final String TIME_AMOUNT = "TIME_AMOUNT";
 		public static final String _TABLENAME = "Mallang_Log_TB";
 		public static final String _CREATE =
-				"CREATE TABLE " +_TABLENAME+" ("
-				+LOG_YMDHM+" INTEGER UNSIGNED NOT NULL PRIMARY KEY, "+
-				USER_ID+" TEXT NOT NULL, "+MEDI_TYPE+" INTEGER UNSIGNED NULL, "
-				+TIME_AMOUNT+" INTEGER UNSIGNED NULL, "+
-				" FOREIGN KEY(USER_ID) REFERENCES User_PW_TB(USER_ID) );";
+				String.format("CREATE TABLE %s (%s INTEGER NOT NULL PRIMARY KEY, "
+						+ "%s TEXT NULL, %s INTEGER UNSIGNED NULL, %s  INTEGER UNSIGNED NULL );"
+						, _TABLENAME, LOG_YMDHM, USER_ID, MEDI_TYPE, TIME_AMOUNT);
 	}
 	public static final class CreateTotalDB implements BaseColumns {
 		public static final String USER_ID = "USER_ID";
@@ -57,13 +52,12 @@ public final class MallangData {
 		public static final String MEDI_CHAKRA = "MEDI_CHAKRA";
 		public static final String _TABLENAME = "Mallang_Total_TB";
 		public static final String _CREATE =
-				"CREATE TABLE " +_TABLENAME+" (" +
-				USER_ID+" TEXT NOT NULL PRIMARY KEY, "+MEDI_TYPE+" INTEGER UNSIGNED NOT NULL, "
-				+MEDI_COUNT+" INTEGER UNSIGNED NULL, "+MEDI_TIME+" INTEGER UNSIGNED NULL, "
-				+MEDI_CHAKRA+" INTEGER UNSIGNED NULL, "+
-				"FOREIGN KEY(USER_ID)  REFERENCES User_PW_TB(USER_ID) );";
+				String.format("CREATE TABLE %s (_id INTEGER NOT NULL PRIMARY KEY, %s TEXT NOT NULL, "
+						+"%s INTEGER UNSIGNED NULL, %s INTEGER UNSIGNED NULL, "
+						+"%s  INTEGER UNSIGNED NULL, %s INTEGER UNSIGNED NULL );"
+						, _TABLENAME,USER_ID,MEDI_TYPE,MEDI_COUNT,MEDI_TIME,MEDI_CHAKRA);
 	}
-	/*
+	
 	public static final String CreateInfoTrigger =
 			"CREATE TRIGGER Insert_mallang_log AFTER INSERT ON Mallang_Log_TB"
 			+" BEGIN UPDATE Mallang_Total_TB SET MEDI_COUNT=MEDI_COUNT+1, MEDI_TIME=MEDI_TIME+new.TIME_AMOUNT "
@@ -72,11 +66,4 @@ public final class MallangData {
 			"CREATE TRIGGER Update_mallang_log AFTER UPDATE ON Mallang_Total_TB "
 			+" BEGIN UPDATE Mallang_Total_TB SET MEDI_CHAKRA=new.MEDI_COUNT*new.MEDI_TIME " +
 			" WHERE MEDI_TYPE=new.MEDI_TYPE AND USER_ID=new.USER_ID; END;";
-	public static final String CreateUserTrigger = 
-			"CREATE TRIGGER Make_User_Mallang AFTER INSERT ON User_PW_TB FOR EACH ROW BEGIN "+
-			" INSERT INTO User_Info_TB (USER_ID, USER_NM, NICK_NM, GENDER, REG_DT, BIRTH_DT, NATIONAL, CITY) VALUES (new.USER_ID, new.USER_NM, NULL, NULL, 0, 0, NULL, NULL);"+
-			" INSERT INTO Mallang_Total_TB (USER_ID, MEDI_TYPE, MEDI_COUNT, MEDI_TIME, MEDI_CHAKRA) VALUES (new.USER_ID, 1, 0, 0, 0);"+
-			" INSERT INTO Mallang_Total_TB (USER_ID, MEDI_TYPE, MEDI_COUNT, MEDI_TIME, MEDI_CHAKRA) VALUES (new.USER_ID, 2, 0, 0, 0);"+
-			" END;";
-			*/
 }

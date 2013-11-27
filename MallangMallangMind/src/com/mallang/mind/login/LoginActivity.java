@@ -55,6 +55,16 @@ public class LoginActivity extends Activity implements OnClickListener {
 			}
 			
 		});
+		
+		findPWBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(getBaseContext(), FindPasswordActivity.class);
+				startActivity(intent);
+			}
+			
+		});
+		
 	}
 
 	@Override
@@ -86,6 +96,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			Intent intent = new Intent(getBaseContext(),TimerMainActivity.class);
             startActivity(intent);
 			finish();
+			return;
 		}
 		toast = Toast.makeText(getBaseContext(), "Password is incorrect, please check your password", Toast.LENGTH_LONG);
 		toast.show();

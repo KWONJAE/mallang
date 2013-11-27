@@ -3,6 +3,7 @@ package com.mallang.mind.login;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -125,11 +126,14 @@ public class InfoRegisterActivity extends Activity{
 		});
 	}
 	private void setLabel() {
-		birthInput.setText(new StringBuilder().append(calendar.get(Calendar.YEAR))
-				.append("-").append(calendar.get(Calendar.MONTH)+1)
-				.append("-").append(calendar.get(Calendar.DAY_OF_MONTH)));
-		dateInteger = new Integer( (new StringBuilder().append(calendar.get(Calendar.YEAR))
-					.append(calendar.get(Calendar.MONTH)+1).append(calendar.get(Calendar.DAY_OF_MONTH))).toString() );
+		Date date = calendar.getTime();
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
+		String tempDate = myFormat.format(date);
+
+		birthInput.setText(tempDate);
+		myFormat = new SimpleDateFormat("yyyyMMdd",Locale.KOREA);
+		tempDate = myFormat.format(date);
+		dateInteger = Integer.parseInt(tempDate);
 	}
 	 public void saveInfoProcess() {
 		 	
@@ -140,8 +144,9 @@ public class InfoRegisterActivity extends Activity{
 			//to get current date
 			calendar = Calendar.getInstance();
 			Date date = calendar.getTime();
-			String tempDate = new SimpleDateFormat("yyyyMMdd").format(date);
-			int regDate = new Integer(tempDate);
+			SimpleDateFormat myFormat = new SimpleDateFormat("yyyyMMdd",Locale.KOREA);
+			String tempDate = myFormat.format(date);
+			int regDate = Integer.parseInt(tempDate);
 			userInfo.setRegDate(regDate);
 			userInfo.setNational(nationalInput.getText().toString());
 			userInfo.setCity(cityInput.getText().toString());
@@ -151,6 +156,7 @@ public class InfoRegisterActivity extends Activity{
 				Toast toast = Toast.makeText(getBaseContext(), "Save informaton successfully", Toast.LENGTH_SHORT);
 				toast.show();
 				finish();
+				return;
 			}
 			Toast toast = Toast.makeText(getBaseContext(), "Error to save information please try it again", Toast.LENGTH_SHORT);
 			toast.show();

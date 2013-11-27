@@ -30,21 +30,19 @@ public class DbOpenHelper {
             db.execSQL(MallangData.CreateInfoDB._CREATE);
             db.execSQL(MallangData.CreateLogDB._CREATE);
             db.execSQL(MallangData.CreateTotalDB._CREATE);
-            /*
-            db.execSQL(MallangData.CreateUserTrigger);
+            
             db.execSQL(MallangData.CreateInfoTrigger);
             db.execSQL(MallangData.CreateMallangTrigger);
-            */
+            
         }
  
         // 踰꾩쟾���낅뜲�댄듃 �섏뿀��寃쎌슦 DB瑜��ㅼ떆 留뚮뱾��以�떎.
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        	/*
+        	
             db.execSQL("DROP TRIGGER IF EXISTS "+MallangData.CreateInfoTrigger);
             db.execSQL("DROP TRIGGER IF EXISTS "+MallangData.CreateMallangTrigger);
-            db.execSQL("DROP TRIGGER IF EXISTS "+MallangData.CreateUserTrigger);
-            */
+            
             db.execSQL("DROP TABLE IF EXISTS "+MallangData.CreateTotalDB._TABLENAME);
             db.execSQL("DROP TABLE IF EXISTS "+MallangData.CreateLogDB._TABLENAME);
             db.execSQL("DROP TABLE IF EXISTS "+MallangData.CreateInfoDB._TABLENAME);
@@ -60,6 +58,7 @@ public class DbOpenHelper {
     public DbOpenHelper open() throws SQLException{
         mDBHelper = new DatabaseHelper(mCtx, DATABASE_NAME, null, DATABASE_VERSION);
         mDB = mDBHelper.getWritableDatabase();
+        //mDB.execSQL("PRAGMA foreign_keys = ON;");
         return this;
     }
  
@@ -68,13 +67,30 @@ public class DbOpenHelper {
     }
     //Register user
  	public boolean insertPW(String id, String name, String passwd){
- 		String sqlQuery =
-				String.format("INSERT INTO User_PW_TB (USER_ID, USER_NM, PASSWD)" +
+ 		
+ 		String sqlQuery = 
+ 				String.format("INSERT INTO User_PW_TB (USER_ID, USER_NM, PASSWD)" +
 						" VALUES ('%s', '%s', '%s');", id, name, passwd);
+		/*
+ 		ContentValues values = new ContentValues();
+ 		values.put(MallangData.CreatePWDB.USER_ID, id);
+ 		values.put(MallangData.CreatePWDB.USER_NM, name);
+ 		values.put(MallangData.CreatePWDB.USER_PW, passwd);
+ 		*/
  		try {
- 			mDB.beginTransaction();
+ 			//mDB.beginTransaction();
  			mDB.execSQL(sqlQuery);
- 			mDB.endTransaction();
+ 			//mDB.insert(MallangData.CreatePWDB._TABLENAME, null, values);
+ 			//mDB.endTransaction();
+ 			sqlQuery = String.format("INSERT INTO User_Info_TB (USER_ID, USER_NM, NICK_NM, GENDER, REG_DT, BIRTH_DT, NATIONAL, CITY)" +
+ 					" VALUES ('%s', '%s', NULL, NULL, 0, 0, NULL, NULL);",id, name);
+ 			mDB.execSQL(sqlQuery);
+ 			sqlQuery = String.format("INSERT INTO Mallang_Total_TB (USER_ID, MEDI_TYPE, MEDI_COUNT, MEDI_TIME, MEDI_CHAKRA)" +
+ 					" VALUES ('%s', 1, 0, 0, 0);", id);
+ 			mDB.execSQL(sqlQuery);
+ 			sqlQuery = String.format("INSERT INTO Mallang_Total_TB (USER_ID, MEDI_TYPE, MEDI_COUNT, MEDI_TIME, MEDI_CHAKRA)" +
+ 					" VALUES ('%s', 2, 0, 0, 0);", id);
+ 			mDB.execSQL(sqlQuery);
  		} catch (SQLiteException e) {
  			return false;
  		}
@@ -126,8 +142,9 @@ public class DbOpenHelper {
  	}
  	public boolean checkId(String id){
  		try {
-	 		Cursor c = mDB.rawQuery( "select * from "+ MallangData.CreatePWDB._TABLENAME
-	 				+ "where "+MallangData.CreatePWDB.USER_ID+"='" + id + "'" , null);
+ 			String sqlQuery = String.format("SELECT * FROM %s where %s = '%s';"
+ 					,MallangData.CreatePWDB._TABLENAME, MallangData.CreatePWDB.USER_ID, id);
+	 		Cursor c = mDB.rawQuery( sqlQuery, null);
 	 		if( c.getCount()>0 )
 	 			return true;
  		} catch (SQLiteException e) {
@@ -135,11 +152,29 @@ public class DbOpenHelper {
  		}
  		return false;
  	}
+ 	public String getPw(String id, String name){
+ 		try {
+ 			String sqlQuery = String.format("SELECT * FROM %s where %s = '%s' and %s = '%s';"
+ 					,MallangData.CreatePWDB._TABLENAME, MallangData.CreatePWDB.USER_ID, id
+ 					,MallangData.CreatePWDB.USER_NM, name);
+	 		Cursor c = mDB.rawQuery( sqlQuery, null);
+	 		if( c.getCount()>0 ) {
+	 		c.moveToFirst();
+	 		String password = c.getString(c.getColumnIndex(MallangData.CreatePWDB.USER_PW));
+	 		return password;
+	 		}
+ 		} catch (SQLiteException e) {
+ 			return null;
+ 		}
+ 		return null;
+ 	}
  	public boolean checkIdPw(String id, String pw){
  		try {
-	 		Cursor c = mDB.rawQuery( "select PASSWD from "+ MallangData.CreatePWDB._TABLENAME
-	 				+ "where "+MallangData.CreatePWDB.USER_ID+"='" + id + "'" , null);
-	 		if( pw.equals(c.getString(0)) )
+ 			String sqlQuery = String.format("SELECT %s FROM %s where %s = '%s';"
+ 					, MallangData.CreatePWDB.USER_PW, MallangData.CreatePWDB._TABLENAME, MallangData.CreatePWDB.USER_ID, id);
+	 		Cursor c = mDB.rawQuery( sqlQuery , null);
+	 		c.moveToFirst();
+	 		if( pw.equals(c.getString(c.getColumnIndex(MallangData.CreatePWDB.USER_PW))) )
 	 			return true;
  		} catch (SQLiteException e) {
  			return false;
@@ -168,7 +203,7 @@ public class DbOpenHelper {
 
  	// �대쫫 寃�깋 �섍린 (rawQuery)
  	public Cursor getMatchName(String name){
- 		Cursor c = mDB.rawQuery( "select * from address where name=" + "'" + name + "'" , null);
+ 		Cursor c = mDB.rawQuery( "select * from address where name=" + "'" + name + "';" , null);
  		return c;
  	}
 }
