@@ -3,7 +3,6 @@
 
     <string name="app_name">MallangMallangMind</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
 	<string-array
 	    name="gender_selection">
 	    <item>Male</item>
