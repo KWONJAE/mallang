@@ -54,6 +54,7 @@
             android:name="com.mallang.mind.login.InfoRegisterActivity" ></activity>
         <activity
             android:name="com.mallang.mind.login.LoginActivity" ></activity>
+        <activity android:name="com.mallang.mind.login.FindPasswordActivity"></activity>
     </application>
 
 </manifest>
