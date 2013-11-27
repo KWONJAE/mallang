@@ -12,8 +12,7 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-    	android:theme="@android:style/Theme.Black.NoTitleBar"   >
+        android:label="@string/app_name"  >
         <activity android:name="com.mallang.mind.frontImageActivity"
             android:label="@string/app_name" >
             <intent-filter>
@@ -26,12 +25,7 @@
             android:name="com.mallang.mind.MainActivity"
             android:label="@string/app_name" >
         </activity>
-        <activity android:name="com.mallang.mind.BasicMeditationActivity"></activity>
-        <activity android:name="com.mallang.mind.mypageActivity"></activity>
-        <activity android:name="com.mallang.mind.TwoMeditationActivity">   </activity>
         
-        <activity android:name="com.mallang.mind.TimerMainActivity"></activity>
-      
         <!-- activity for login page -->
         <activity
             android:name="com.mallang.mind.login.RegisterActivity"></activity>

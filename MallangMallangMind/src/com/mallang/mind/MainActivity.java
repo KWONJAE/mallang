@@ -23,10 +23,11 @@ public class MainActivity extends BaseActivity implements OnClickListener{
     private int value = 120;
     private CountDownTimer timer;  
     
+    
 	public MainActivity() {
 		super(R.id.textView1);
 	}
-
+	
 		@Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
