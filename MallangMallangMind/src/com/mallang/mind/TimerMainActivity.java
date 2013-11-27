@@ -1,11 +1,8 @@
 package com.mallang.mind;
 
-
-
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.app.Activity;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -43,7 +40,6 @@ public class TimerMainActivity extends Activity {
 
 			@Override
 			public void onTick(long millisUntilFinished) {
-				// TODO Auto-generated method stub
 				long time = millisUntilFinished/1000;
 				int seconds = (int)(time%60);
 				int minutes = (int)(time%3600)/60;
@@ -51,10 +47,8 @@ public class TimerMainActivity extends Activity {
 			}
 		};
 		btnStart.setOnClickListener(new Button.OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				turnCounter++;
 				timer1.start();
 				btnStart.setText("Please Talk...");
@@ -62,10 +56,8 @@ public class TimerMainActivity extends Activity {
 			
 		});
 		btnEnd.setOnClickListener(new Button.OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				timer1.cancel();
 				text1.setText("It is canceled");
 				turnCounter=0;
@@ -74,6 +66,5 @@ public class TimerMainActivity extends Activity {
 			
 		});
 	}
-
 
 }

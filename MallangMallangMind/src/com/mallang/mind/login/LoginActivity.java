@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.mallang.mind.MainActivity;
 import com.mallang.mind.R;
-import com.mallang.mind.TimerMainActivity;
 import com.mallang.mind.db.DbOpenHelper;
 
 public class LoginActivity extends Activity implements OnClickListener {
@@ -50,7 +50,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				mDbOpenHelper.close();
-				Intent intent = new Intent(getBaseContext(),TimerMainActivity.class);
+				Intent intent = new Intent(getBaseContext(),MainActivity.class);
                 startActivity(intent);
 			}
 			
@@ -93,7 +93,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			toast = Toast.makeText(getBaseContext(), "Welcome "+id, Toast.LENGTH_SHORT);
 			toast.show();
 			mDbOpenHelper.close();
-			Intent intent = new Intent(getBaseContext(),TimerMainActivity.class);
+			Intent intent = new Intent(getBaseContext(),MainActivity.class);
             startActivity(intent);
 			finish();
 			return;
