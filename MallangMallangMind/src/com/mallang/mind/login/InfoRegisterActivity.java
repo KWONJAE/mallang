@@ -1,36 +1,15 @@
 package com.mallang.mind.login;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.DateFormat;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import com.mallang.mind.R;
+import java.util.Date;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -42,11 +21,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.mallang.mind.R;
+import com.mallang.mind.db.DbOpenHelper;
+import com.mallang.mind.db.UserInfo;
 
 
 public class InfoRegisterActivity extends Activity{
+	private DbOpenHelper mDbOpenHelper;
 	protected static final int DATE_DIALOG_ID = 0;
 	private EditText nickInput;
 	private Spinner genderSpinner;
@@ -57,18 +38,29 @@ public class InfoRegisterActivity extends Activity{
     private Button saveBtn;
     private Button skipBtn;
     private String userID;
-    private String url = "http://192.168.123.186:8080/mallangDB/app/registerInfo";
     //to save yyyy-mm-dd
     private Calendar calendar = Calendar.getInstance();
     private DatePickerDialog.OnDateSetListener dateSetListener;
     
-    private int gender;
+    private int dateInteger;
+    private String gender;
     
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.info_register_layout);
 		
+		// DB Create and Open
+        mDbOpenHelper = new DbOpenHelper(this);
+        mDbOpenHelper.open();
+		
+        Intent receivedIntent = getIntent();
+		userID = receivedIntent.getStringExtra("userID");
+		
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.gender_selection,
+						android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        
 		nickInput = (EditText) findViewById(R.id.info_nick_input);
 		genderSpinner = (Spinner) findViewById(R.id.info_gender_spinner);
 		birthInput = (Button) findViewById(R.id.info_birth_btn);
@@ -84,31 +76,23 @@ public class InfoRegisterActivity extends Activity{
 				setLabel();
 			}
 		};
-		Intent receivedIntent = getIntent();
-		userID = receivedIntent.getStringExtra("userID");
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.gender_selection,
-						android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		
 		genderSpinner.setAdapter(adapter);
 		genderSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				Toast.makeText(parent.getContext(),
-						"선택한 성별은 "+parent.getItemAtPosition(position)
-						+"  : "+parent.getItemIdAtPosition(position),
-						Toast.LENGTH_SHORT).show();
-				gender = position;
+				gender = parent.getItemAtPosition(position).toString();
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
 				// TODO Auto-generated method stub
 				Toast.makeText(parent.getContext(),
-						"선택하지 않았습니다 ",
+						"You did not set gender",
 						Toast.LENGTH_SHORT).show();
-				gender = 3;
+				gender = "X";
 				//default value;
 			}
 			
@@ -128,8 +112,7 @@ public class InfoRegisterActivity extends Activity{
 		saveBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(InfoRegisterActivity.this, birthInput.getText().toString(),
-		                 Toast.LENGTH_SHORT).show() ;
+				pDialog=ProgressDialog.show(InfoRegisterActivity.this, "", "Now Loading....");
 				saveInfoProcess();
 			}
 			
@@ -143,96 +126,41 @@ public class InfoRegisterActivity extends Activity{
 		});
 	}
 	private void setLabel() {
-		birthInput.setText(new StringBuilder().append(calendar.get(Calendar.YEAR))
-				.append("-").append(calendar.get(Calendar.MONTH)+1)
-				.append("-").append(calendar.get(Calendar.DAY_OF_MONTH)));
+		Date date = calendar.getTime();
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
+		String tempDate = myFormat.format(date);
+
+		birthInput.setText(tempDate);
+		myFormat = new SimpleDateFormat("yyyyMMdd",Locale.KOREA);
+		tempDate = myFormat.format(date);
+		dateInteger = Integer.parseInt(tempDate);
 	}
-	private final Handler handler = new Handler() {
-	      @Override
-	      public void handleMessage(Message msg) {
-	            pDialog.dismiss();
-	            String result=msg.getData().getString("RESULT");
-				if ( result.equals("success") ) {
-				  Toast.makeText(InfoRegisterActivity.this, "정보 저장 완료",
-				                 Toast.LENGTH_SHORT).show() ;
-				  finish();
-				} else {
-				      Toast.makeText(InfoRegisterActivity.this, "추가 정보 저장 실패",
-				                     Toast.LENGTH_LONG).show() ;    
-				        }
-	      }
-	      
-	    };
-	    
-	//실패하는 경우 <result>failed</result>를 반환하도록 설정해 두었다. 
-	public String parsingData(InputStream input){
-	    String result=null;
-	    try {
-	         XmlPullParserFactory factory= XmlPullParserFactory.newInstance();
-	         XmlPullParser parser = factory.newPullParser();
-	         parser.setInput(new InputStreamReader(input));
-	         while ( parser.next() != XmlPullParser.END_DOCUMENT) {
-	             String name=parser.getName();
-	              if ( name != null && name.equals("result"))
-	                         result=parser.nextText();
-	              }
-	         }catch(Exception e){e.printStackTrace();}
-	         return result;
-	     }
-	 
 	 public void saveInfoProcess() {
-	      final ResponseHandler<String> responseHandler=
-	           new ResponseHandler<String>() {
-	             @Override
-	             public String handleResponse(HttpResponse response)
-	                                              throws ClientProtocolException, IOException {
-	                     String result=null;
-	                     HttpEntity entity=response.getEntity(); 
-	                     result=parsingData(entity.getContent());
-	                     Message message=handler.obtainMessage();
-	                     Bundle bundle=new Bundle();
-	                     if ( result.equals("success") ) 
-	                    	 bundle.putString("RESULT", "success");
-						 else
-							 bundle.putString("RESULT", "failed");
-	                     
-		                 message.setData(bundle);
-		                 handler.sendMessage(message);
-		                 return result;
-	                 }
-	      		};
-			     // 로그인이 처리되고 있다는 다이얼로그를 화면에 표시한다.
-			 pDialog=ProgressDialog.show(this, "", "Now Loading....");
-			 
-			 // 서버에 HTTP 처리 요청은 새로운 스레드를 생성하여 비동기식으로 처리하는것이 효율적이다.
-			 new Thread() {
-			       @Override
-			        public void run() {
-						 HttpClient http = new DefaultHttpClient();
-						 try { 
-						     // 서버에 전달할 파라메터 세팅   
-							 ArrayList<NameValuePair> nameValuePairs = 
-							         new ArrayList<NameValuePair>();
-							 nameValuePairs.add(new BasicNameValuePair
-									 ("userID", userID));
-							 String userInfo = nickInput.getText().toString() + "&"
-									 + gender + "&"
-									 + birthInput.getText().toString() + "&"
-									 + nationalInput.getText().toString() + "&"
-									 + cityInput.getText().toString();
-		
-							 nameValuePairs.add(new BasicNameValuePair
-									 ("userInfo", userInfo));
-							 HttpParams params = http.getParams();
-							 HttpConnectionParams.setConnectionTimeout(params, 5000);
-							 HttpConnectionParams.setSoTimeout(params, 5000);
-							 HttpPost httpPost = new HttpPost(url);
-							 UrlEncodedFormEntity entityRequest = 
-				                     new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
-				             httpPost.setEntity(entityRequest);
-				             http.execute(httpPost,responseHandler); 
-			            }catch(Exception e){e.printStackTrace();}
-			       }
-			  }.start();    //스레드를 실행시킨다.
+		 	
+			UserInfo userInfo = new UserInfo();
+			userInfo.setNick(nickInput.getText().toString());
+			userInfo.setGender(gender);
+			userInfo.setBirthDate(dateInteger);
+			//to get current date
+			calendar = Calendar.getInstance();
+			Date date = calendar.getTime();
+			SimpleDateFormat myFormat = new SimpleDateFormat("yyyyMMdd",Locale.KOREA);
+			String tempDate = myFormat.format(date);
+			int regDate = Integer.parseInt(tempDate);
+			userInfo.setRegDate(regDate);
+			userInfo.setNational(nationalInput.getText().toString());
+			userInfo.setCity(cityInput.getText().toString());
+			userInfo.setUserID(userID);
+			pDialog.dismiss();
+			if(mDbOpenHelper.updateInfo(userInfo)) {
+				Toast toast = Toast.makeText(getBaseContext(), "Save informaton successfully", Toast.LENGTH_SHORT);
+				toast.show();
+				finish();
+				return;
+			}
+			Toast toast = Toast.makeText(getBaseContext(), "Error to save information please try it again", Toast.LENGTH_SHORT);
+			toast.show();
+			return;
+			
 	 }
 }
