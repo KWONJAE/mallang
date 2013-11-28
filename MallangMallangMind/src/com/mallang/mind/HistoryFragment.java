@@ -91,11 +91,11 @@ public class HistoryFragment extends Fragment{
 			TextView date  = (TextView) convertView.findViewById(R.id.history_date);
 			date.setText(getItem(position).date);
 			TextView logTime  = (TextView) convertView.findViewById(R.id.history_logtime);
-			logTime.setText(getItem(position).mediType);
+			logTime.setText(" "+getItem(position).logTime);
 			TextView mediType  = (TextView) convertView.findViewById(R.id.history_meditype);
-			mediType.setText(getItem(position).logTime);
+			mediType.setText(" "+getItem(position).mediType+" ");
 			TextView mediAmount = (TextView) convertView.findViewById(R.id.history_mediamount);
-			mediAmount.setText(getItem(position).mediAmount);
+			mediAmount.setText(" "+getItem(position).mediAmount+"Ка");
 			return convertView;
 		}
 	

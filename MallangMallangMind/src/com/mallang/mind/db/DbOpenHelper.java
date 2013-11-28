@@ -213,14 +213,18 @@ public class DbOpenHelper {
 		
 		return temp;
  	}
- 	public UserMallang getUserMallang(String id, String mediType) {
+ 	public UserMallang getUserMallang(String id, int mediType) {
  		Cursor c = mDB.query(MallangData.CreateTotalDB._TABLENAME, null, 
- 				"USER_ID='"+id+"'", null, null, null, null);
+ 				"USER_ID='"+id+"'"+" AND MEDI_TYPE="+mediType+"", null, null, null, null);
  		if(c == null || c.getCount() == 0) {
  			return null;
  		}
  		c.moveToFirst();
  		UserMallang temp = new UserMallang();
+ 		temp.setChakra(c.getInt(c.getColumnIndex(MallangData.CreateTotalDB.MEDI_CHAKRA)));
+ 		temp.setMediType(c.getInt(c.getColumnIndex(MallangData.CreateTotalDB.MEDI_TYPE)));
+ 		temp.setMediCount(c.getInt(c.getColumnIndex(MallangData.CreateTotalDB.MEDI_COUNT)));
+ 		temp.setMediTime(c.getInt(c.getColumnIndex(MallangData.CreateTotalDB.MEDI_TIME)));
  		return temp;
  	}
  	public boolean changePW(String id, String pw){

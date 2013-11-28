@@ -1,6 +1,8 @@
 package com.mallang.mind;
 
 import com.mallang.mind.db.DbOpenHelper;
+import com.mallang.mind.db.UserInfo;
+import com.mallang.mind.db.UserMallang;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -35,9 +37,17 @@ public class MyInfoFragment extends Fragment{
 		id.setText(userID);
 		
 		mDbOpenHelper.open();
-		
-		
+		UserInfo tempInfo = mDbOpenHelper.getUserInfo(userID);
+		UserMallang mallangOne = mDbOpenHelper.getUserMallang(userID, 1);
+		UserMallang mallangTwo = mDbOpenHelper.getUserMallang(userID, 2);
 		mDbOpenHelper.close();
+		
+		if(tempInfo!=null) {
+			name.setText(tempInfo.getName());
+			birthSex.setText(tempInfo.getBirthDate()+" & "+tempInfo.getGender());
+			regTime.setText(tempInfo.getRegDate());
+		}
+		
 		return v;
 	}
 
