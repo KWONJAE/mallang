@@ -1,62 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-     xmlns:android="http://schemas.android.com/apk/res/android"
-     android:id="@+id/login_layout_linear"
-     android:layout_width="fill_parent"
-     android:layout_height="fill_parent"
-     android:orientation="vertical"
-     android:visibility="visible">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_layout_linear"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:visibility="visible" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="14dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon" />
+
     <LinearLayout
-         android:orientation="horizontal"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:gravity="center_horizontal">
-        <TextView android:text="  아이디: "
-             android:layout_width="wrap_content" 
-             android:layout_height="wrap_content"/>
-        <EditText android:text="" 
-             android:id="@+id/login_id_input" 
-             android:layout_width="200px" 
-             android:layout_height="wrap_content"/>
-     </LinearLayout> 
-     <LinearLayout
-             android:orientation="horizontal"
-             android:layout_width="fill_parent"
-             android:layout_height="wrap_content"
-             android:gravity="center_horizontal">
-        <TextView android:text="패스워드: "
-             android:layout_width="wrap_content" 
-             android:layout_height="wrap_content"/>
-       <EditText android:text="" 
-             android:id="@+id/login_passwd_input" 
-             android:layout_width="200px" 
-             android:layout_height="wrap_content"
-             android:password="true"/>
-      </LinearLayout> 
-	 <LinearLayout
-	      android:orientation="horizontal"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:gravity="center_horizontal">
-	 <Button android:text="로그인" 
-	  android:id="@+id/login_btn" 
-	  android:layout_width="wrap_content" 
-	  android:layout_height="wrap_content"
-	  android:gravity="center_horizontal"/>
-	 <Button android:text="회원가입" 
-	  android:id="@+id/login_register_btn" 
-	  android:layout_width="wrap_content" 
-	  android:layout_height="wrap_content"
-	  android:gravity="center_horizontal"/>
-	 <Button android:text="비밀번호찾기" 
-	  android:id="@+id/login_findpw_btn" 
-	  android:layout_width="wrap_content" 
-	  android:layout_height="wrap_content"
-	  android:gravity="center_horizontal"/>
-	 <Button android:text="skip(forDev)" 
-	  android:id="@+id/login_skip_btn" 
-	  android:layout_width="wrap_content" 
-	  android:layout_height="wrap_content"
-	  android:gravity="center_horizontal"/>
-	    </LinearLayout> 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:text="    아이디: " />
+
+        <EditText
+            android:id="@+id/login_id_input"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:background="@drawable/login_background"
+            android:paddingLeft="10dp"
+            android:text="" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:text="패스워드: " />
+
+        <EditText
+            android:id="@+id/login_passwd_input"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:background="@drawable/login_background"
+            android:password="true"
+            android:paddingLeft="10dp"
+            android:text="" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/login_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:src="@drawable/loginbutton" />
+
+        <ImageButton
+            android:id="@+id/login_register_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:src="@drawable/registerbutton" />
+
+        <ImageButton
+            android:id="@+id/login_findpw_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:src="@drawable/findpasswdbutton" />
+
+        <ImageButton
+            android:id="@+id/login_skip_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:src="@drawable/skipbutton" />
+    </LinearLayout>
+
 </LinearLayout>

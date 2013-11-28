@@ -1027,13 +1027,31 @@ containing a value of this type.
         public static final int abs__textfield_searchview_right_holo_dark=0x7f02006d;
         public static final int abs__textfield_searchview_right_holo_light=0x7f02006e;
         public static final int abs__toast_frame=0x7f02006f;
-        public static final int fantastic=0x7f020070;
-        public static final int ic_action_github=0x7f020071;
-        public static final int ic_launcher=0x7f020072;
-        public static final int shadow=0x7f020073;
+        public static final int background=0x7f020070;
+        public static final int cancelbutton=0x7f020071;
+        public static final int fantastic=0x7f020072;
+        public static final int findpasswdbutton=0x7f020073;
+        public static final int ic_action_github=0x7f020074;
+        public static final int ic_launcher=0x7f020075;
+        public static final int icon=0x7f020076;
+        public static final int login_background=0x7f020077;
+        public static final int loginbutton=0x7f020078;
+        public static final int mainimage=0x7f020079;
+        public static final int mallangpoint=0x7f02007a;
+        public static final int new_indicator=0x7f02007b;
+        public static final int profileimage=0x7f02007c;
+        public static final int registerbutton=0x7f02007d;
+        public static final int shadow=0x7f02007e;
+        public static final int skipbutton=0x7f02007f;
+        public static final int slidemenubutton=0x7f020080;
+        public static final int textedit=0x7f020081;
     }
     public static final class id {
-        public static final int LinearLayout2=0x7f040042;
+        public static final int LinearLayout2=0x7f040040;
+        public static final int UserBirthAndSexTextView=0x7f040058;
+        public static final int UserEmailTextView=0x7f040057;
+        public static final int UserNameTextView=0x7f040056;
+        public static final int UserTimeTextView=0x7f040059;
         public static final int abs__action_bar=0x7f040025;
         public static final int abs__action_bar_container=0x7f040024;
         public static final int abs__action_bar_subtitle=0x7f040016;
@@ -1073,72 +1091,70 @@ containing a value of this type.
         public static final int abs__textButton=0x7f040018;
         public static final int abs__title=0x7f040020;
         public static final int abs__up=0x7f04000b;
-        public static final int analogClock1=0x7f040039;
-        public static final int button1=0x7f040038;
-        public static final int chronometer1=0x7f04003a;
-        public static final int content_frame=0x7f04003c;
-        public static final int date=0x7f040043;
+        public static final int content_frame=0x7f04003a;
+        public static final int date=0x7f040041;
         public static final int disableHome=0x7f040009;
         public static final int edit_query=0x7f04002b;
-        public static final int findpw_btn=0x7f04003f;
-        public static final int findpw_cancle_btn=0x7f040040;
-        public static final int findpw_id_input=0x7f04003d;
-        public static final int findpw_name_input=0x7f04003e;
+        public static final int findpw_btn=0x7f04003d;
+        public static final int findpw_cancle_btn=0x7f04003e;
+        public static final int findpw_id_input=0x7f04003b;
+        public static final int findpw_name_input=0x7f04003c;
         public static final int fullscreen=0x7f040013;
-        public static final int github=0x7f04006b;
-        public static final int historylist=0x7f040041;
+        public static final int github=0x7f04006d;
+        public static final int historylist=0x7f04003f;
         public static final int homeAsUp=0x7f040006;
-        public static final int imageView1=0x7f040059;
-        public static final int info_birth_btn=0x7f04004a;
-        public static final int info_city_input=0x7f04004c;
-        public static final int info_gender_spinner=0x7f040049;
-        public static final int info_national_input=0x7f04004b;
-        public static final int info_nick_input=0x7f040048;
-        public static final int info_save_btn=0x7f04004d;
-        public static final int info_skip_btn=0x7f04004e;
+        public static final int imageView1=0x7f04004d;
+        public static final int info_birth_btn=0x7f040046;
+        public static final int info_city_input=0x7f040048;
+        public static final int info_gender_spinner=0x7f040045;
+        public static final int info_national_input=0x7f040047;
+        public static final int info_nick_input=0x7f040044;
+        public static final int info_save_btn=0x7f040049;
+        public static final int info_skip_btn=0x7f04004a;
         public static final int left=0x7f040010;
-        public static final int leftslidemenu=0x7f04004f;
+        public static final int leftslidemenu=0x7f04004b;
         public static final int listMode=0x7f040002;
-        public static final int login_btn=0x7f040053;
-        public static final int login_findpw_btn=0x7f040055;
-        public static final int login_id_input=0x7f040051;
-        public static final int login_layout_linear=0x7f040050;
-        public static final int login_passwd_input=0x7f040052;
-        public static final int login_register_btn=0x7f040054;
-        public static final int login_skip_btn=0x7f040056;
+        public static final int login_btn=0x7f040050;
+        public static final int login_findpw_btn=0x7f040052;
+        public static final int login_id_input=0x7f04004e;
+        public static final int login_layout_linear=0x7f04004c;
+        public static final int login_passwd_input=0x7f04004f;
+        public static final int login_register_btn=0x7f040051;
+        public static final int login_skip_btn=0x7f040053;
+        public static final int mallangPointTextView=0x7f04005e;
+        public static final int mallangpointimage=0x7f04005f;
         public static final int margin=0x7f040012;
-        public static final int menu_frame=0x7f040057;
+        public static final int menu_frame=0x7f040054;
         public static final int normal=0x7f040001;
-        public static final int onemeditation=0x7f040044;
-        public static final int onetrynum=0x7f040045;
-        public static final int register_btn=0x7f040063;
-        public static final int register_cancle_btn=0x7f040064;
-        public static final int register_id_input=0x7f04005f;
-        public static final int register_name_input=0x7f040060;
-        public static final int register_pw_input=0x7f040061;
-        public static final int register_pwconfirm_input=0x7f040062;
+        public static final int oneMediNumTextView=0x7f04005b;
+        public static final int oneMediTextView=0x7f04005a;
+        public static final int oneMediTimeTextView=0x7f04005c;
+        public static final int onetrynum=0x7f040042;
+        public static final int profileimage=0x7f040055;
+        public static final int register_btn=0x7f040064;
+        public static final int register_cancle_btn=0x7f040065;
+        public static final int register_id_input=0x7f040060;
+        public static final int register_name_input=0x7f040061;
+        public static final int register_pw_input=0x7f040062;
+        public static final int register_pwconfirm_input=0x7f040063;
         public static final int right=0x7f040011;
-        public static final int row_icon=0x7f040065;
-        public static final int row_title=0x7f040066;
+        public static final int row_icon=0x7f040066;
+        public static final int row_title=0x7f040067;
         public static final int selected_view=0x7f040014;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
-        public static final int slidingmenumain=0x7f040067;
+        public static final int slidingmenumain=0x7f040068;
+        public static final int startbutton=0x7f040039;
         public static final int tabMode=0x7f040003;
-        public static final int textView=0x7f04003b;
-        public static final int textView1=0x7f040037;
-        public static final int textView2=0x7f04005d;
-        public static final int textView3=0x7f04005e;
-        public static final int textView4=0x7f04005a;
-        public static final int textView5=0x7f040058;
-        public static final int textView6=0x7f04005b;
-        public static final int textView7=0x7f04005c;
-        public static final int timer_main_end=0x7f04006a;
-        public static final int timer_main_start=0x7f040069;
-        public static final int timer_main_text=0x7f040068;
-        public static final int twomeditation=0x7f040046;
-        public static final int twotrynum=0x7f040047;
+        public static final int textView1=0x7f04006c;
+        public static final int timer_main_end=0x7f04006b;
+        public static final int timer_main_start=0x7f04006a;
+        public static final int timer_main_text=0x7f040069;
+        public static final int timetext=0x7f040038;
+        public static final int title=0x7f040037;
+        public static final int totalTimeTextView=0x7f04005d;
+        public static final int twotrynum=0x7f040043;
         public static final int useLogo=0x7f040004;
         public static final int wrap_content=0x7f040000;
     }
@@ -1193,8 +1209,8 @@ containing a value of this type.
         public static final int main=0x7f0c0000;
     }
     public static final class string {
-        public static final int about=0x7f090024;
-        public static final int about_msg=0x7f090027;
+        public static final int about=0x7f090025;
+        public static final int about_msg=0x7f090028;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abs__action_bar_home_description=0x7f090000;
@@ -1235,44 +1251,36 @@ containing a value of this type.
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f090007;
         public static final int action_settings=0x7f09000e;
-        public static final int anim_fold=0x7f090019;
-        public static final int anim_scale=0x7f090018;
-        public static final int anim_slide=0x7f09001a;
-        public static final int anim_zoom=0x7f090017;
-        public static final int animations=0x7f090016;
-        public static final int apache_license=0x7f090028;
+        public static final int anim_fold=0x7f09001a;
+        public static final int anim_scale=0x7f090019;
+        public static final int anim_slide=0x7f09001b;
+        public static final int anim_zoom=0x7f090018;
+        public static final int animations=0x7f090017;
+        public static final int apache_license=0x7f090029;
         public static final int app_name=0x7f09000d;
-        public static final int attach=0x7f090012;
-        public static final int changing_fragments=0x7f09001b;
-        public static final int contact=0x7f090026;
-        public static final int general=0x7f090010;
-        public static final int github=0x7f090020;
-        public static final int github_label=0x7f090021;
-        public static final int left=0x7f09001d;
-        public static final int left_and_right=0x7f09001f;
-        public static final int licenses=0x7f090025;
-        public static final int no_email=0x7f090029;
-        public static final int properties=0x7f09000f;
-        public static final int responsive_explanation=0x7f090023;
-        public static final int responsive_ui=0x7f09001c;
-        public static final int right=0x7f09001e;
-        public static final int title_bar=0x7f090013;
-        public static final int title_bar_content=0x7f090015;
-        public static final int title_bar_slide=0x7f090014;
-        public static final int viewpager=0x7f090011;
-        public static final int what_is_this=0x7f090022;
+        public static final int attach=0x7f090013;
+        public static final int changing_fragments=0x7f09001c;
+        public static final int contact=0x7f090027;
+        public static final int general=0x7f090011;
+        public static final int github=0x7f090021;
+        public static final int github_label=0x7f090022;
+        public static final int left=0x7f09001e;
+        public static final int left_and_right=0x7f090020;
+        public static final int licenses=0x7f090026;
+        public static final int no_email=0x7f09002a;
+        public static final int notitlename=0x7f09000f;
+        public static final int properties=0x7f090010;
+        public static final int responsive_explanation=0x7f090024;
+        public static final int responsive_ui=0x7f09001d;
+        public static final int right=0x7f09001f;
+        public static final int title_bar=0x7f090014;
+        public static final int title_bar_content=0x7f090016;
+        public static final int title_bar_slide=0x7f090015;
+        public static final int viewpager=0x7f090012;
+        public static final int what_is_this=0x7f090023;
     }
     public static final class style {
         /** 
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
-
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
     
@@ -1284,11 +1292,8 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f0a0059;
-        /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
-         */
-        public static final int AppTheme=0x7f0a005a;
+        public static final int AppBaseTheme=0x7f0a005a;
+        public static final int ExampleTheme=0x7f0a0059;
         public static final int Sherlock___TextAppearance_Small=0x7f0a0046;
         public static final int Sherlock___Theme=0x7f0a0051;
         public static final int Sherlock___Theme_DarkActionBar=0x7f0a0053;

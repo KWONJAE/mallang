@@ -13,25 +13,21 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 
 
-public class MainActivity extends BaseActivity implements OnClickListener{
+public class MainActivity extends BaseActivity{
 	
 	private Fragment mContent;
-	
-	TextView title;
-	Button start;
-	   //매 1초 마다 증가할 정수값
-    private int value = 120;
-    private CountDownTimer timer;  
-    
+
+
     
 	public MainActivity() {
-		super(R.id.textView1);
+		super(R.string.notitlename);
 	}
-	
+
 		@Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setSlidingActionBarEnabled(true);
+	        
 	        // set the content view
 	        setContentView(R.layout.activity_main);
 	        
@@ -42,8 +38,8 @@ public class MainActivity extends BaseActivity implements OnClickListener{
 				mContent = getSupportFragmentManager().getFragment(savedInstanceState, "mContent");
 			if (mContent == null)
 				mContent = new MyInfoFragment();	
-	        start = (Button)findViewById(R.id.button1);
-			title = (TextView)findViewById(R.id.textView1);
+	       
+		
 			
 			 
 		     // set the Above View
@@ -64,21 +60,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
 				getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 	        
 	    }
-		@Override
-		public void onClick(View v) { //시작 버튼
-			// TODO Auto-generated method stub
-	        switch (v.getId()) {
-
-			
-			case R.id.button1:
-				value = 120;
-				timer.start();
-				break;
-
-			}
-			
-			
-		}
+	
 		@Override
 		public void onSaveInstanceState(Bundle outState) {
 			super.onSaveInstanceState(outState);

@@ -120,6 +120,7 @@ public class InfoRegisterActivity extends Activity{
 		skipBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				mDbOpenHelper.close();
 				finish();
 			}
 			
@@ -155,6 +156,7 @@ public class InfoRegisterActivity extends Activity{
 			if(mDbOpenHelper.updateInfo(userInfo)) {
 				Toast toast = Toast.makeText(getBaseContext(), "Save informaton successfully", Toast.LENGTH_SHORT);
 				toast.show();
+				mDbOpenHelper.close();
 				finish();
 				return;
 			}

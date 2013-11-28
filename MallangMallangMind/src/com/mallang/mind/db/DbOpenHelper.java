@@ -1,5 +1,10 @@
 package com.mallang.mind.db;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -78,10 +83,10 @@ public class DbOpenHelper {
  		values.put(MallangData.CreatePWDB.USER_PW, passwd);
  		*/
  		try {
- 			//mDB.beginTransaction();
+ 			mDB.beginTransaction();
  			mDB.execSQL(sqlQuery);
  			//mDB.insert(MallangData.CreatePWDB._TABLENAME, null, values);
- 			//mDB.endTransaction();
+ 			
  			sqlQuery = String.format("INSERT INTO User_Info_TB (USER_ID, USER_NM, NICK_NM, GENDER, REG_DT, BIRTH_DT, NATIONAL, CITY)" +
  					" VALUES ('%s', '%s', NULL, NULL, 0, 0, NULL, NULL);",id, name);
  			mDB.execSQL(sqlQuery);
@@ -91,19 +96,26 @@ public class DbOpenHelper {
  			sqlQuery = String.format("INSERT INTO Mallang_Total_TB (USER_ID, MEDI_TYPE, MEDI_COUNT, MEDI_TIME, MEDI_CHAKRA)" +
  					" VALUES ('%s', 2, 0, 0, 0);", id);
  			mDB.execSQL(sqlQuery);
+ 			mDB.endTransaction();
  		} catch (SQLiteException e) {
  			return false;
  		}
  		return true;
  	}
- 	public boolean insertLog(String id, String name, String passwd){
+ 	public boolean insertLog(String userId, String mediType, String timeAmount){
  		ContentValues values = new ContentValues();
- 		values.put(MallangData.CreatePWDB.USER_ID, id);
- 		values.put(MallangData.CreatePWDB.USER_NM, name);
- 		values.put(MallangData.CreatePWDB.USER_PW, passwd);
+ 		//to get current date
+		Calendar calendar = Calendar.getInstance();
+		Date date = calendar.getTime();
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyyMMddHHmm",Locale.KOREA);
+		String tempDate = myFormat.format(date);
+ 		values.put(MallangData.CreateLogDB.LOG_YMDHM, tempDate);
+ 		values.put(MallangData.CreateLogDB.MEDI_TYPE, mediType);
+ 		values.put(MallangData.CreateLogDB.USER_ID, userId);
+ 		values.put(MallangData.CreateLogDB.TIME_AMOUNT, timeAmount);
  		try {
  			mDB.beginTransaction();
- 			mDB.insert(MallangData.CreatePWDB._TABLENAME, null, values);
+ 			mDB.insert(MallangData.CreateLogDB._TABLENAME, null, values);
  			mDB.endTransaction();
  		} catch (SQLiteException e) {
  			return false;

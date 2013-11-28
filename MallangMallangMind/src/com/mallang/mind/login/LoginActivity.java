@@ -22,6 +22,7 @@ public class LoginActivity extends Activity implements OnClickListener {
     private Button registerBtn;
     private Button findPWBtn;
     private Button skipBtn;
+    private String userId;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,6 +41,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		registerBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				mDbOpenHelper.close();
 				Intent intent = new Intent(getBaseContext(), RegisterActivity.class);
 				startActivity(intent);
 			}
@@ -51,6 +53,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			public void onClick(View v) {
 				mDbOpenHelper.close();
 				Intent intent = new Intent(getBaseContext(),MainActivity.class);
+				intent.putExtra("userID", userId);
                 startActivity(intent);
 			}
 			
@@ -59,6 +62,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		findPWBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
+				mDbOpenHelper.close();
 				Intent intent = new Intent(getBaseContext(), FindPasswordActivity.class);
 				startActivity(intent);
 			}
@@ -81,16 +85,16 @@ public class LoginActivity extends Activity implements OnClickListener {
 	}
 	
 	public void loginProcess() {
-		String id = idInput.getText().toString();
+		userId = idInput.getText().toString();
 		String pw = passwdInput.getText().toString();
 		Toast toast;
-		if( !mDbOpenHelper.checkId(id) ) {
+		if( !mDbOpenHelper.checkId(userId) ) {
 			toast = Toast.makeText(getBaseContext(), "There is no match ID, please register", Toast.LENGTH_LONG);
 			toast.show();
 			return;
 		}
-		if( mDbOpenHelper.checkIdPw(id, pw) ) {
-			toast = Toast.makeText(getBaseContext(), "Welcome "+id, Toast.LENGTH_SHORT);
+		if( mDbOpenHelper.checkIdPw(userId, pw) ) {
+			toast = Toast.makeText(getBaseContext(), "Welcome "+userId, Toast.LENGTH_SHORT);
 			toast.show();
 			mDbOpenHelper.close();
 			Intent intent = new Intent(getBaseContext(),MainActivity.class);
@@ -102,4 +106,9 @@ public class LoginActivity extends Activity implements OnClickListener {
 		toast.show();
 		return;
 	 }
+	@Override
+	protected void onRestart() {
+	    super.onRestart();  // Always call the superclass method first
+	    mDbOpenHelper.open();
+	}
 }

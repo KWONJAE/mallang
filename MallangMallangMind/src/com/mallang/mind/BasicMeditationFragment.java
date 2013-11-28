@@ -24,10 +24,10 @@ public class BasicMeditationFragment extends Fragment implements OnClickListener
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View v = inflater.inflate(R.layout.activity_main, container, false);
+		View v = inflater.inflate(R.layout.basicmeditationlayout, container, false);
 
-		start = (Button) v.findViewById(R.id.button1);
-		title = (TextView)v.findViewById(R.id.textView1);
+		start = (Button) v.findViewById(R.id.startbutton);
+		title = (TextView)v.findViewById(R.id.timetext);
 		start.setOnClickListener(this);
 		 timer = new CountDownTimer(120 * 1000, 1000) {
 	        	@Override
@@ -64,7 +64,7 @@ public class BasicMeditationFragment extends Fragment implements OnClickListener
 	        switch (v.getId()) {
 
 			
-			case R.id.button1:
+			case R.id.startbutton:
 				value = 120;
 				timer.start();
 				break;

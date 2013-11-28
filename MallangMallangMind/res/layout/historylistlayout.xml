@@ -14,7 +14,6 @@
         android:text="TextView" />
 
 	   <TextView
-	       android:id="@+id/onemeditation"
 	       android:layout_width="wrap_content"
 	       android:layout_height="wrap_content"
 	       android:text="혼자하기" />
@@ -26,7 +25,6 @@
 	       android:text="TextView" />
 
 	   <TextView
-	       android:id="@+id/twomeditation"
 	       android:layout_width="wrap_content"
 	       android:layout_height="wrap_content"
 	       android:text="같이하기" />

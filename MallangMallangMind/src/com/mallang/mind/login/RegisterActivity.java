@@ -52,6 +52,7 @@ public class RegisterActivity extends Activity{
 		cancleBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				mDbOpenHelper.close();
 				finish();
 			}
 			
@@ -80,6 +81,7 @@ public class RegisterActivity extends Activity{
 			intent.putExtra("userID", idInput.getText().toString());
 			startActivity(intent);
 			finish();
+			mDbOpenHelper.close();
 			return;
 		}
 		
