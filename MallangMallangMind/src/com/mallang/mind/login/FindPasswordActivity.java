@@ -34,7 +34,6 @@ public class FindPasswordActivity extends Activity{
         cancleBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mDbOpenHelper.close();
 				finish();
 			}
         });

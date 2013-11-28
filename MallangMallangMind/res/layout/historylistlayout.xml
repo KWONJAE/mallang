@@ -8,31 +8,27 @@
     <!-- day  혼자하기  횟수 -->
     <!-- 둘이하기  횟수 -->
 	   <TextView
-        android:id="@+id/date"
+        android:id="@+id/history_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="date" />
 
 	   <TextView
+	       android:id="@+id/history_logtime"
 	       android:layout_width="wrap_content"
 	       android:layout_height="wrap_content"
-	       android:text="혼자하기" />
+	       android:text="logtime" />
 
 	   <TextView
-	       android:id="@+id/onetrynum"
+	       android:id="@+id/history_meditype"
 	       android:layout_width="wrap_content"
 	       android:layout_height="wrap_content"
-	       android:text="TextView" />
-
+	       android:text="meditype" />
 	   <TextView
+	       android:id="@+id/history_mediamount"
 	       android:layout_width="wrap_content"
 	       android:layout_height="wrap_content"
-	       android:text="같이하기" />
-
-	   <TextView
-	       android:id="@+id/twotrynum"
-	       android:layout_width="wrap_content"
-	       android:layout_height="wrap_content"
-	       android:text="TextView" />
+	       android:text="amount" />
+	   
 
 </LinearLayout>

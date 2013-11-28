@@ -2,12 +2,14 @@ package com.mallang.mind.login;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.view.Window;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.mallang.mind.MainActivity;
@@ -18,11 +20,10 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private DbOpenHelper mDbOpenHelper;
     private EditText idInput;
     private EditText passwdInput;
-    private Button loginBtn;
-    private Button registerBtn;
-    private Button findPWBtn;
-    private Button skipBtn;
-    private String userId;
+    private ImageButton loginBtn;
+    private ImageButton registerBtn;
+    private ImageButton findPWBtn;
+    private ImageButton skipBtn;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,27 +34,25 @@ public class LoginActivity extends Activity implements OnClickListener {
         
 		idInput = (EditText) findViewById(R.id.login_id_input);
 		passwdInput = (EditText) findViewById(R.id.login_passwd_input);
-		loginBtn = (Button) findViewById(R.id.login_btn);
-		registerBtn = (Button) findViewById(R.id.login_register_btn);
-		findPWBtn = (Button) findViewById(R.id.login_findpw_btn);
+		loginBtn = (ImageButton) findViewById(R.id.login_btn);
+		registerBtn = (ImageButton) findViewById(R.id.login_register_btn);
+		findPWBtn = (ImageButton) findViewById(R.id.login_findpw_btn);
 		loginBtn.setOnClickListener(this);
 		
 		registerBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mDbOpenHelper.close();
 				Intent intent = new Intent(getBaseContext(), RegisterActivity.class);
 				startActivity(intent);
 			}
 			
 		});
-		skipBtn = (Button) findViewById(R.id.login_skip_btn);
+		skipBtn = (ImageButton) findViewById(R.id.login_skip_btn);
 		skipBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				mDbOpenHelper.close();
 				Intent intent = new Intent(getBaseContext(),MainActivity.class);
-				intent.putExtra("userID", userId);
                 startActivity(intent);
 			}
 			
@@ -62,7 +61,6 @@ public class LoginActivity extends Activity implements OnClickListener {
 		findPWBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				mDbOpenHelper.close();
 				Intent intent = new Intent(getBaseContext(), FindPasswordActivity.class);
 				startActivity(intent);
 			}
@@ -85,18 +83,23 @@ public class LoginActivity extends Activity implements OnClickListener {
 	}
 	
 	public void loginProcess() {
-		userId = idInput.getText().toString();
+		String id = idInput.getText().toString();
 		String pw = passwdInput.getText().toString();
 		Toast toast;
-		if( !mDbOpenHelper.checkId(userId) ) {
+		if( !mDbOpenHelper.checkId(id) ) {
 			toast = Toast.makeText(getBaseContext(), "There is no match ID, please register", Toast.LENGTH_LONG);
 			toast.show();
 			return;
 		}
-		if( mDbOpenHelper.checkIdPw(userId, pw) ) {
-			toast = Toast.makeText(getBaseContext(), "Welcome "+userId, Toast.LENGTH_SHORT);
+		if( mDbOpenHelper.checkIdPw(id, pw) ) {
+			toast = Toast.makeText(getBaseContext(), "Welcome "+id, Toast.LENGTH_SHORT);
 			toast.show();
 			mDbOpenHelper.close();
+			//user id save
+			SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+	        SharedPreferences.Editor editor = pref.edit();
+	        editor.putString("userID", id);
+	        editor.commit();
 			Intent intent = new Intent(getBaseContext(),MainActivity.class);
             startActivity(intent);
 			finish();
@@ -106,9 +109,4 @@ public class LoginActivity extends Activity implements OnClickListener {
 		toast.show();
 		return;
 	 }
-	@Override
-	protected void onRestart() {
-	    super.onRestart();  // Always call the superclass method first
-	    mDbOpenHelper.open();
-	}
 }

@@ -1,5 +1,8 @@
 package com.mallang.mind;
 
+import com.mallang.mind.db.DbOpenHelper;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
@@ -13,19 +16,20 @@ import android.widget.TextView;
 
 
 public class BasicMeditationFragment extends Fragment implements OnClickListener {
-	
-	TextView title;
-	Button start;
+	private DbOpenHelper mDbOpenHelper;
+	private TextView title;
+	private Button start;
 	   //매 1초 마다 증가할 정수값
     private int value = 120;
     private CountDownTimer timer;  
-    
+    private SharedPreferences pref;
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
 		View v = inflater.inflate(R.layout.basicmeditationlayout, container, false);
-
+		mDbOpenHelper = new DbOpenHelper(this.getActivity().getBaseContext());
+		pref = this.getActivity().getSharedPreferences("pref", this.getActivity().MODE_PRIVATE);
 		start = (Button) v.findViewById(R.id.startbutton);
 		title = (TextView)v.findViewById(R.id.timetext);
 		start.setOnClickListener(this);
@@ -39,12 +43,12 @@ public class BasicMeditationFragment extends Fragment implements OnClickListener
 		        	{
 		        		
 		        		timer.cancel();
-		        		
-		        		//DB에 넣기
-		        		//
-		        		//
-		        		//
-		        		//DB에 넣기
+		        		//save log
+		                mDbOpenHelper.open();	                
+		                String userID = pref.getString("userID", "");
+		                mDbOpenHelper.insertLog(userID, 1, 2);
+		                mDbOpenHelper.close();
+		                return;
 		        	}
 		        	value--;
 				}
@@ -73,5 +77,6 @@ public class BasicMeditationFragment extends Fragment implements OnClickListener
 			
 			
 		}
+		
 	
 }

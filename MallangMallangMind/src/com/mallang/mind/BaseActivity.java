@@ -21,7 +21,7 @@ public class BaseActivity extends SlidingFragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		setTitle(mTitleRes);
 
 		// set the Behind View
@@ -39,13 +39,13 @@ public class BaseActivity extends SlidingFragmentActivity {
 
 		// customize the SlidingMenu
 		SlidingMenu sm = getSlidingMenu();
+	
 		sm.setShadowWidthRes(R.dimen.shadow_width);
 		sm.setShadowDrawable(R.drawable.shadow);
 		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset); //¿©¹é
 		sm.setFadeDegree(0.35f);
-		
 		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-
+		
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
@@ -54,10 +54,6 @@ public class BaseActivity extends SlidingFragmentActivity {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			toggle();
-			return true;
-	
-		case R.id.github:
-			Util.goToGitHub(this);
 			return true;
 	
 		}

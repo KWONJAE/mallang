@@ -13,19 +13,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
-        <ImageView
-            android:id="@+id/profileimage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/profileimage" />
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/UserNameTextView"
+                android:id="@+id/mypage_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="UserName"
@@ -37,14 +31,14 @@
                 android:background="#87CEFA" />
 
             <TextView
-                android:id="@+id/UserEmailTextView"
+                android:id="@+id/mypage_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="e-mail address"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/UserBirthAndSexTextView"
+                android:id="@+id/mypage_birth_sex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="birthday &amp; sex"
@@ -58,11 +52,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="start : "
+                    android:text="since : "
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/UserTimeTextView"
+                    android:id="@+id/mypage_regi_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="time"
@@ -77,28 +71,26 @@
         android:background="#555555"/>
 
     <TextView
-        android:id="@+id/oneMediTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="혼자하기"
+        android:text="종합 카운트"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/oneMediNumTextView"
+        android:id="@+id/mypage_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="횟수"
+        android:text="n번"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/oneMediTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="시간"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/totalTimeTextView"
+        android:id="@+id/mypage_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total Time : 00:00"
@@ -118,14 +110,11 @@
             android:src="@drawable/mallangpoint" />
 
         <TextView
-            android:id="@+id/mallangPointTextView"
+            android:id="@+id/mypage_mallang_point"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/mallangpointimage"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="54dp"
-            android:layout_marginLeft="112dp"
-            android:gravity="center"
+            android:layout_centerHorizontal="true"
             android:text="100"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 

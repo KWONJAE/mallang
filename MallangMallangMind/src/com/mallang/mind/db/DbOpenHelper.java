@@ -76,17 +76,9 @@ public class DbOpenHelper {
  		String sqlQuery = 
  				String.format("INSERT INTO User_PW_TB (USER_ID, USER_NM, PASSWD)" +
 						" VALUES ('%s', '%s', '%s');", id, name, passwd);
-		/*
- 		ContentValues values = new ContentValues();
- 		values.put(MallangData.CreatePWDB.USER_ID, id);
- 		values.put(MallangData.CreatePWDB.USER_NM, name);
- 		values.put(MallangData.CreatePWDB.USER_PW, passwd);
- 		*/
+		
  		try {
- 			mDB.beginTransaction();
  			mDB.execSQL(sqlQuery);
- 			//mDB.insert(MallangData.CreatePWDB._TABLENAME, null, values);
- 			
  			sqlQuery = String.format("INSERT INTO User_Info_TB (USER_ID, USER_NM, NICK_NM, GENDER, REG_DT, BIRTH_DT, NATIONAL, CITY)" +
  					" VALUES ('%s', '%s', NULL, NULL, 0, 0, NULL, NULL);",id, name);
  			mDB.execSQL(sqlQuery);
@@ -96,13 +88,12 @@ public class DbOpenHelper {
  			sqlQuery = String.format("INSERT INTO Mallang_Total_TB (USER_ID, MEDI_TYPE, MEDI_COUNT, MEDI_TIME, MEDI_CHAKRA)" +
  					" VALUES ('%s', 2, 0, 0, 0);", id);
  			mDB.execSQL(sqlQuery);
- 			mDB.endTransaction();
  		} catch (SQLiteException e) {
  			return false;
  		}
  		return true;
  	}
- 	public boolean insertLog(String userId, String mediType, String timeAmount){
+ 	public boolean insertLog(String userId, int mediType, int timeAmount){
  		ContentValues values = new ContentValues();
  		//to get current date
 		Calendar calendar = Calendar.getInstance();
@@ -114,9 +105,7 @@ public class DbOpenHelper {
  		values.put(MallangData.CreateLogDB.USER_ID, userId);
  		values.put(MallangData.CreateLogDB.TIME_AMOUNT, timeAmount);
  		try {
- 			mDB.beginTransaction();
  			mDB.insert(MallangData.CreateLogDB._TABLENAME, null, values);
- 			mDB.endTransaction();
  		} catch (SQLiteException e) {
  			return false;
  		}
@@ -198,24 +187,52 @@ public class DbOpenHelper {
  		return mDB.delete(MallangData.CreatePWDB._TABLENAME, "USER_ID='"+id+"'", null) > 0;
  	}
  	
- 	/*
- 	public Cursor getAllColumns(){
- 		return mDB.query(MallangData.CreateDB._TABLENAME, null, null, null, null, null, null);
- 	}
- 	*/
-
- 	// ID 而щ읆 �살뼱 �ㅺ린
- 	public Cursor getColumn(String id){
- 		Cursor c = mDB.query(MallangData.CreatePWDB._TABLENAME, null, 
+ 	public Cursor getLogs(String id){
+ 		Cursor c = mDB.query(MallangData.CreateLogDB._TABLENAME, null, 
  				"USER_ID='"+id+"'", null, null, null, null);
  		if(c != null && c.getCount() != 0)
  			c.moveToFirst();
  		return c;
  	}
-
- 	// �대쫫 寃�깋 �섍린 (rawQuery)
- 	public Cursor getMatchName(String name){
- 		Cursor c = mDB.rawQuery( "select * from address where name=" + "'" + name + "';" , null);
- 		return c;
+ 	public UserInfo getUserInfo(String id) {
+ 		
+ 		Cursor c = mDB.query(MallangData.CreateInfoDB._TABLENAME, null, 
+ 				"USER_ID='"+id+"'", null, null, null, null);
+ 		if(c == null || c.getCount() == 0) {
+ 			return null;
+ 		}
+ 		c.moveToFirst();
+		UserInfo temp = new UserInfo();
+		temp.setNick(c.getString(c.getColumnIndex(MallangData.CreateInfoDB.USER_NM)));
+		temp.setBirthDate(c.getInt(c.getColumnIndex(MallangData.CreateInfoDB.BIRTH_DT)));
+		temp.setRegDate(c.getInt(c.getColumnIndex(MallangData.CreateInfoDB.REG_DT)));
+		temp.setGender(c.getString(c.getColumnIndex(MallangData.CreateInfoDB.GENDER)));
+		temp.setCity(c.getString(c.getColumnIndex(MallangData.CreateInfoDB.CITY)));
+		temp.setNational(c.getString(c.getColumnIndex(MallangData.CreateInfoDB.NATIONAL)));
+		temp.setName(c.getString(c.getColumnIndex(MallangData.CreateInfoDB.USER_NM)));
+		
+		return temp;
+ 	}
+ 	public UserMallang getUserMallang(String id, String mediType) {
+ 		Cursor c = mDB.query(MallangData.CreateTotalDB._TABLENAME, null, 
+ 				"USER_ID='"+id+"'", null, null, null, null);
+ 		if(c == null || c.getCount() == 0) {
+ 			return null;
+ 		}
+ 		c.moveToFirst();
+ 		UserMallang temp = new UserMallang();
+ 		return temp;
+ 	}
+ 	public boolean changePW(String id, String pw){
+ 		ContentValues values = new ContentValues();
+ 		values.put(MallangData.CreatePWDB.USER_PW, pw);
+ 		try {
+ 			int temp = mDB.update(MallangData.CreatePWDB._TABLENAME, values, MallangData.CreatePWDB.USER_ID+"='"+id+"'", null);
+ 			if(temp>0)
+ 				return true;
+ 		} catch (SQLiteException e) {
+ 			return false;
+ 		}
+ 		return false;
  	}
 }

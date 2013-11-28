@@ -11,8 +11,10 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"  >
+        android:icon="@drawable/icon"
+        android:theme="@style/ExampleTheme"
+        android:label="@string/app_name"
+    	  >
         <activity android:name="com.mallang.mind.frontImageActivity"
             android:label="@string/app_name" >
             <intent-filter>
@@ -25,16 +27,22 @@
             android:name="com.mallang.mind.MainActivity"
             android:label="@string/app_name" >
         </activity>
-        
+      
+      
         <!-- activity for login page -->
         <activity
-            android:name="com.mallang.mind.login.RegisterActivity"></activity>
+            android:name="com.mallang.mind.login.RegisterActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            ></activity>
         <activity
-            android:name="com.mallang.mind.login.InfoRegisterActivity" ></activity>
+            android:name="com.mallang.mind.login.InfoRegisterActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" ></activity>
         <activity
-            android:name="com.mallang.mind.login.LoginActivity" ></activity>
+            android:name="com.mallang.mind.login.LoginActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" ></activity>
         <activity
-            android:name="com.mallang.mind.login.FindPasswordActivity"></activity>
+            android:name="com.mallang.mind.login.FindPasswordActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
     </application>
 
 </manifest>
