@@ -1,20 +1,18 @@
 package com.mallang.mind;
 
-import java.util.ArrayList;
-
 import com.mallang.mind.db.DbOpenHelper;
 import com.mallang.mind.db.MallangData;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,6 +21,7 @@ public class HistoryFragment extends Fragment{
 	private DbOpenHelper mDbOpenHelper;
 	ListView List;
     private SharedPreferences pref;	
+	@SuppressWarnings("static-access")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -34,33 +33,39 @@ public class HistoryFragment extends Fragment{
 		        
 		SampleAdapter adapter; 
 		adapter = new SampleAdapter(v.getContext());
-			        /////********************************** ø‰±‚¥Ÿ ≥÷±‚
+			        /////********************************** ÔøΩÔøΩÔøΩÔøΩ ÔøΩ÷±ÔøΩ
 		mDbOpenHelper.open();
-		Cursor logCursor = mDbOpenHelper.getLogs(userID);
-		mDbOpenHelper.close();
-		String date = null, logTime = null, mediType = null;
-		String mediAmount = null;
-		int typeFlag=0;
-		logCursor.moveToFirst();
-		do{
-			date =logCursor.getString(logCursor.getColumnIndex(MallangData.CreateLogDB.LOG_YMDHM));
-			//yyyyMMddHHmm
-			logTime = date.substring(8,12);
-			logTime = " "+logTime.substring(0, 2)+":"+logTime.substring(2);
-			date = date.substring(0, 4)+"/"+date.substring(4, 6)+"/"+date.substring(6,8);
-			typeFlag = logCursor.getInt(logCursor.getColumnIndex(MallangData.CreateLogDB.MEDI_TYPE));
-			mediType="∞∞¿Ã«œ±‚";
-			if(typeFlag==1)
-				mediType="»•¿⁄«œ±‚";
+		try {
+			Cursor logCursor = mDbOpenHelper.getLogs(userID);
+			mDbOpenHelper.close();
+			if(logCursor==null)
+				return v;
 			
-			mediAmount = logCursor.getString(logCursor.getColumnIndex(MallangData.CreateLogDB.TIME_AMOUNT));
-			adapter.add(new ListItem(date,logTime,mediType,mediAmount));
-		}while(logCursor.moveToNext());
-		
-		List.setAdapter(adapter);
-		
-		return v;
-		
+			String date = null, logTime = null, mediType = null;
+			String mediAmount = null;
+			int typeFlag=0;
+			logCursor.moveToFirst();
+			do{
+				date =logCursor.getString(logCursor.getColumnIndex(MallangData.CreateLogDB.LOG_YMDHM));
+				//yyyyMMddHHmm
+				logTime = date.substring(8,12);
+				logTime = " "+logTime.substring(0, 2)+":"+logTime.substring(2);
+				date = date.substring(0, 4)+"/"+date.substring(4, 6)+"/"+date.substring(6,8);
+				typeFlag = logCursor.getInt(logCursor.getColumnIndex(MallangData.CreateLogDB.MEDI_TYPE));
+				mediType="Í∞ôÏù¥ÌïòÍ∏∞";
+				if(typeFlag==1)
+					mediType="ÌòºÏûêÌïòÍ∏∞";
+				
+				mediAmount = logCursor.getString(logCursor.getColumnIndex(MallangData.CreateLogDB.TIME_AMOUNT));
+				adapter.add(new ListItem(date,logTime,mediType,mediAmount));
+			}while(logCursor.moveToNext());
+			
+			List.setAdapter(adapter);
+			
+			return v;
+		} catch(CursorIndexOutOfBoundsException e) {
+			return v;
+		}
 	}
 
 	
@@ -95,7 +100,7 @@ public class HistoryFragment extends Fragment{
 			TextView mediType  = (TextView) convertView.findViewById(R.id.history_meditype);
 			mediType.setText(" "+getItem(position).mediType+" ");
 			TextView mediAmount = (TextView) convertView.findViewById(R.id.history_mediamount);
-			mediAmount.setText(" "+getItem(position).mediAmount+"∫–");
+			mediAmount.setText(" "+getItem(position).mediAmount+"Î∂Ñ");
 			return convertView;
 		}
 	

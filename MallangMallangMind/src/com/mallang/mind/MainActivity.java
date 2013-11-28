@@ -2,26 +2,20 @@ package com.mallang.mind;
 
 
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.TextView;
+import android.view.WindowManager;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
-
-
 public class MainActivity extends BaseActivity{
 	
-	private Fragment mContent;
-
-
-    
-	public MainActivity() {
-		super(R.string.notitlename);
-	}
+		private Fragment mContent;
+	
+	
+	    
+		public MainActivity() {
+			super(R.string.notitlename);
+		}
 
 		@Override
 	    public void onCreate(Bundle savedInstanceState) {
@@ -30,10 +24,11 @@ public class MainActivity extends BaseActivity{
 	        
 	        // set the content view
 	        setContentView(R.layout.activity_main);
+	        //set app is not go to sleep
+	        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	        
 	        
-	        
-	     // set the Above View
+	        // set the Above View
 			if (savedInstanceState != null)
 				mContent = getSupportFragmentManager().getFragment(savedInstanceState, "mContent");
 			if (mContent == null)
@@ -42,22 +37,22 @@ public class MainActivity extends BaseActivity{
 		
 			
 			 
-		     // set the Above View
-				setContentView(R.layout.content_frame);
-				getSupportFragmentManager()
-				.beginTransaction()
-				.replace(R.id.content_frame, mContent)
-				.commit();
-				
-				// set the Behind View
-				setBehindContentView(R.layout.menu_frame);
-				getSupportFragmentManager()
-				.beginTransaction()
-				.replace(R.id.menu_frame, new ListMenuFragment())
-				.commit();
-				
-				// customize the SlidingMenu
-				getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		    // set the Above View
+			setContentView(R.layout.content_frame);
+			getSupportFragmentManager()
+			.beginTransaction()
+			.replace(R.id.content_frame, mContent)
+			.commit();
+			
+			// set the Behind View
+			setBehindContentView(R.layout.menu_frame);
+			getSupportFragmentManager()
+			.beginTransaction()
+			.replace(R.id.menu_frame, new ListMenuFragment())
+			.commit();
+			
+			// customize the SlidingMenu
+			getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 	        
 	    }
 	

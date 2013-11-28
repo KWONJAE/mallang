@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -19,11 +18,12 @@ public class BasicMeditationFragment extends Fragment implements OnClickListener
 	private DbOpenHelper mDbOpenHelper;
 	private TextView title;
 	private Button start;
-	   //¸Å 1ÃÊ ¸¶´Ù Áõ°¡ÇÒ Á¤¼ö°ª
+	   //ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private int value = 120;
     private CountDownTimer timer;  
     private SharedPreferences pref;
-    @Override
+    @SuppressWarnings("static-access")
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
@@ -63,7 +63,7 @@ public class BasicMeditationFragment extends Fragment implements OnClickListener
 
 		
 		@Override
-		public void onClick(View v) { //½ÃÀÛ ¹öÆ°
+		public void onClick(View v) { //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
 			// TODO Auto-generated method stub
 	        switch (v.getId()) {
 

@@ -10,10 +10,8 @@ import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -21,12 +19,12 @@ public class TwoMeditationFragment extends Fragment {
 	
 	private DbOpenHelper mDbOpenHelper;
 	private TextView text1;
-	private TextView text2;
 	private CountDownTimer timer1;
 	private int turnCounter=0;
 	private Button btnStart, btnEnd;
 	private boolean isRun;
 	private SharedPreferences pref;
+	@SuppressWarnings("static-access")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.timer_main, container, false);
@@ -43,7 +41,7 @@ public class TwoMeditationFragment extends Fragment {
 			isRun=false;
 				                
             
-			//text2.setText("3min for one person ¸¶Áö¸· 3ºÐÀº ¼­·Î ÀÌ¾ß±â");
+			//text2.setText("3min for one person ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¾ß±ï¿½");
 			timer1 = new CountDownTimer(180*1000, 1000) {
 				@Override
 				public void onFinish() {

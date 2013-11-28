@@ -10,8 +10,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 public class MyInfoFragment extends Fragment{
@@ -19,6 +17,7 @@ public class MyInfoFragment extends Fragment{
 	private DbOpenHelper mDbOpenHelper;
     private SharedPreferences pref;
     private TextView id, name, birthSex, regTime, count, time, mallang;
+	@SuppressWarnings("static-access")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -33,7 +32,6 @@ public class MyInfoFragment extends Fragment{
 		count = (TextView)v.findViewById(R.id.mypage_count);
 		time = (TextView)v.findViewById(R.id.mypage_time);
 		mallang = (TextView)v.findViewById(R.id.mypage_mallang_point);
-		int totalCount =0, totalTime=0;
 		id.setText(userID);
 		
 		mDbOpenHelper.open();
@@ -45,9 +43,25 @@ public class MyInfoFragment extends Fragment{
 		if(tempInfo!=null) {
 			name.setText(tempInfo.getName());
 			birthSex.setText(tempInfo.getBirthDate()+" & "+tempInfo.getGender());
-			regTime.setText(tempInfo.getRegDate());
+			regTime.setText(String.valueOf(tempInfo.getRegDate()));
 		}
-		
+		int countSum=0;
+		int timeSum=0, mallangSum=0;
+		if(mallangOne!=null) {
+			countSum=mallangOne.getMediCount();
+			timeSum=mallangOne.getMediTime();
+			mallangSum=mallangOne.getChakra();
+		}
+		if(mallangTwo!=null) {
+			countSum+=mallangTwo.getMediCount();
+			timeSum+=mallangTwo.getMediTime();
+			mallangSum+=mallangTwo.getChakra();
+		}
+		if(countSum>0){
+			count.setText(String.valueOf(countSum)+"번");
+			time.setText("Total Time : "+String.valueOf(timeSum)+"분");
+			mallang.setText(String.valueOf(mallangSum));
+		}
 		return v;
 	}
 
