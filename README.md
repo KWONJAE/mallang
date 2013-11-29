@@ -10,6 +10,7 @@ mallang
 To Compile this application.
 
 1. Please download all of directories
+
    a. MallangMallangMind
    b. actionbarsherlock
    c. library
@@ -21,6 +22,7 @@ To Compile this application.
 4. From properties, go to 'Android' tap.
 
 5. Please add libraries from 'Library' tap.
+
    a. actionbarsherlock
    b. library
 
