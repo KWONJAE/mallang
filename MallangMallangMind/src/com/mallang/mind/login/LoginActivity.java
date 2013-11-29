@@ -2,6 +2,7 @@ package com.mallang.mind.login;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -94,6 +95,11 @@ public class LoginActivity extends Activity implements OnClickListener {
 			toast = Toast.makeText(getBaseContext(), "Welcome "+id, Toast.LENGTH_SHORT);
 			toast.show();
 			mDbOpenHelper.close();
+			//user id save
+			SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+	        SharedPreferences.Editor editor = pref.edit();
+	        editor.putString("userID", id);
+	        editor.commit();
 			Intent intent = new Intent(getBaseContext(),MainActivity.class);
             startActivity(intent);
 			finish();

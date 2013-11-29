@@ -22,6 +22,7 @@
                 android:id="@+id/mypage_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#808080"
                 android:text="UserName"
                 android:textSize="30sp" />
 
@@ -34,6 +35,7 @@
                 android:id="@+id/mypage_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#808080"
                 android:text="e-mail address"
                 android:textSize="16sp" />
 
@@ -41,6 +43,7 @@
                 android:id="@+id/mypage_birth_sex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#808080"
                 android:text="birthday &amp; sex"
                 android:textSize="16sp" />
 
@@ -52,6 +55,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#808080"
                     android:text="since : "
                     android:textSize="16sp" />
 
@@ -59,6 +63,7 @@
                     android:id="@+id/mypage_regi_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#808080"
                     android:text="time"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -73,6 +78,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#808080"
         android:text="종합 카운트"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -80,12 +86,14 @@
         android:id="@+id/mypage_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#808080"
         android:text="0번"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#808080"
         android:text="시간"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -93,6 +101,7 @@
         android:id="@+id/mypage_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#808080"
         android:text="Total Time : 00:00"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -111,19 +120,15 @@
 
         <TextView
             android:id="@+id/mypage_mallang_point"
-            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
             android:text="100"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#808080" />
 
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/startbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tutorial" />
 
 </LinearLayout>

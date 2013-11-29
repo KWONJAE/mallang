@@ -6,5 +6,5 @@
     android:background="#87AFAF"
     android:paddingLeft="@dimen/list_padding"
     android:paddingRight="@dimen/list_padding"
-    android:textColor="#FFFFFC"
+    android:textColor="#808080"
      />

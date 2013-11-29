@@ -11,23 +11,27 @@
         android:id="@+id/history_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#808080"
         android:text="date" />
 
 	   <TextView
 	       android:id="@+id/history_logtime"
 	       android:layout_width="wrap_content"
 	       android:layout_height="wrap_content"
+	       android:textColor="#808080"
 	       android:text="logtime" />
 
 	   <TextView
 	       android:id="@+id/history_meditype"
 	       android:layout_width="wrap_content"
 	       android:layout_height="wrap_content"
+	       android:textColor="#808080"
 	       android:text="meditype" />
 	   <TextView
 	       android:id="@+id/history_mediamount"
 	       android:layout_width="wrap_content"
 	       android:layout_height="wrap_content"
+	       android:textColor="#808080"
 	       android:text="amount" />
 	   
 

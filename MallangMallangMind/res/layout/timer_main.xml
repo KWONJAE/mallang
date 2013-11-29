@@ -16,6 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="146dp"
+        android:textColor="#808080"
         android:text="Information of Timer" />
 
     <Button
@@ -41,6 +42,7 @@
         android:layout_alignBottom="@+id/timer_main_text"
         android:layout_alignLeft="@+id/timer_main_end"
         android:layout_marginBottom="72dp"
+        android:textColor="#808080"
         android:text="ss" />
 
 </RelativeLayout>

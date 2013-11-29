@@ -41,7 +41,6 @@ public class BasicMeditationFragment extends Fragment implements OnClickListener
 		        	
 		        	if( value == 0 ) 
 		        	{
-		        		
 		        		timer.cancel();
 		        		//save log
 		                mDbOpenHelper.open();	                
