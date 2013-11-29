@@ -1,5 +1,9 @@
 package com.mallang.mind;
 
+import com.mallang.mind.etc.IntroChadActivity;
+import com.mallang.mind.etc.TutorialActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
@@ -30,6 +34,7 @@ public class ListMenuFragment extends ListFragment {
 	@Override
 	public void onListItemClick(ListView lv, View v, int position, long id) {
 		Fragment newContent = null;
+		Intent intent = null;
 		switch (position) {
 		case 0:
 			newContent = new MyInfoFragment();
@@ -44,7 +49,12 @@ public class ListMenuFragment extends ListFragment {
 			newContent = new HistoryFragment();
 			break;
 		case 4:
-			newContent = new TutorialPageFragment();
+			intent = new Intent(this.getActivity().getBaseContext(),TutorialActivity.class);
+            startActivity(intent);
+			break;
+		case 5:
+			intent = new Intent(this.getActivity().getBaseContext(),IntroChadActivity.class);
+            startActivity(intent);
 			break;
 		}
 		if (newContent != null)

@@ -24,6 +24,7 @@ public class MyInfoFragment extends Fragment{
 		mDbOpenHelper = new DbOpenHelper(this.getActivity().getBaseContext());
 		pref = this.getActivity().getSharedPreferences("pref", this.getActivity().MODE_PRIVATE);
 		String userID = pref.getString("userID", "");
+		
 		View v = inflater.inflate(R.layout.mypagelayout, container, false);
 		id = (TextView)v.findViewById(R.id.mypage_id);
 		name = (TextView)v.findViewById(R.id.mypage_name);

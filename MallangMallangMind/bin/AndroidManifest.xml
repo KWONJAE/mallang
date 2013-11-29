@@ -43,6 +43,14 @@
         <activity
             android:name="com.mallang.mind.login.FindPasswordActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+        
+        <!--  activity for etc page -->
+        <activity
+            android:name="com.mallang.mind.etc.IntroChadActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+        <activity
+            android:name="com.mallang.mind.etc.TutorialActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
     </application>
 
 </manifest>

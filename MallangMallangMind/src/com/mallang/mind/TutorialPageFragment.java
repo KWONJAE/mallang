@@ -15,19 +15,19 @@ import android.view.ViewGroup;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class TutorialPageFragment extends Fragment{
-
+	private ViewPager mPager;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 			View v = inflater.inflate(R.layout.tutorialmain, container, false);
 			
-			ViewPager vp = (ViewPager)v.findViewById(R.id.pager);
-			vp.setId("VP".hashCode());
-			vp.setAdapter(new TutorialPagerAdapter(getFragmentManager()));
+			mPager = (ViewPager)v.findViewById(R.id.pager);
+			mPager.setId("mPager".hashCode());
+			mPager.setAdapter(new TutorialPagerAdapter(getFragmentManager()));
 			
 
-			vp.setOnPageChangeListener(new OnPageChangeListener() {
+			mPager.setOnPageChangeListener(new OnPageChangeListener() {
 				@Override
 				public void onPageScrollStateChanged(int arg0) { }
 
@@ -50,7 +50,7 @@ public class TutorialPageFragment extends Fragment{
 
 			});
 			
-			vp.setCurrentItem(0);
+			mPager.setCurrentItem(0);
 			return v;
 			
 	
@@ -66,9 +66,9 @@ public class TutorialPageFragment extends Fragment{
 			super(fm);
 			mFragments = new ArrayList<Fragment>();
 			
-				mFragments.add(new TutorialOneFragment());
-				mFragments.add(new TutorialTwoFragment());
-				mFragments.add(new TutorialThreeFragment());
+				mFragments.add(0, new TutorialOneFragment());
+				mFragments.add(1, new TutorialTwoFragment());
+				mFragments.add(2, new TutorialThreeFragment());
 		
 		}
 		@Override
