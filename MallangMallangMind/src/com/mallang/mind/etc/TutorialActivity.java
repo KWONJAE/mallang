@@ -17,7 +17,7 @@ public class TutorialActivity extends Activity{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.tutorialmain);
+		setContentView(R.layout.etc_main);
 		
 		
 		mPager = (ViewPager)findViewById(R.id.pager);
@@ -44,11 +44,11 @@ public class TutorialActivity extends Activity{
 		public Object instantiateItem(View pager, int position) {
 			View v = null;
     		if(position==0){
-    			v = mInflater.inflate(R.layout.tutorialone, null);
+    			v = mInflater.inflate(R.layout.etc_one, null);
     			v.findViewById(R.id.iv_one).setBackgroundResource(R.drawable.tutorial1);
     		}
     		else{
-    			v = mInflater.inflate(R.layout.tutorialtwo, null);
+    			v = mInflater.inflate(R.layout.etc_two, null);
     			v.findViewById(R.id.iv_two).setBackgroundResource(R.drawable.tutorial2);
     		}
     		((ViewPager)pager).addView(v, 0);

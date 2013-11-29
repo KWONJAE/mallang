@@ -4,15 +4,12 @@ import com.mallang.mind.R;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 
 public class IntroChadActivity extends Activity{
 	private ViewPager mPager;
@@ -20,22 +17,12 @@ public class IntroChadActivity extends Activity{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.tutorialmain);
+		setContentView(R.layout.etc_main);
 		
 		
 		mPager = (ViewPager)findViewById(R.id.pager);
 		mPager.setAdapter(new PagerAdapterClass(getApplicationContext()));
 	}
-	private View.OnClickListener mPagerListener = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			if(R.id.introduce_book==((Button)v).getId()) {
-				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://chademeng.com/")));
-				return;
-			}
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://book.daum.net/detail/book.do?bookid=KOR9788952765208")));
-		}
-	};
 	/**
 	 * PagerAdapter 
 	 */
@@ -50,23 +37,19 @@ public class IntroChadActivity extends Activity{
 		
 		@Override
 		public int getCount() {
-			return 3;
+			return 2;
 		}
 
 		@Override
 		public Object instantiateItem(View pager, int position) {
 			View v = null;
     		if(position==0){
-    			v = mInflater.inflate(R.layout.tutorialone, null);
+    			v = mInflater.inflate(R.layout.etc_one, null);
     			v.findViewById(R.id.iv_one);
     		}
-    		else if(position==1){
-    			v = mInflater.inflate(R.layout.tutorialtwo, null);
+    		else {
+    			v = mInflater.inflate(R.layout.etc_two, null);
     			v.findViewById(R.id.iv_two);
-    		}else{
-    			v = mInflater.inflate(R.layout.tutorialthree, null);
-    			v.findViewById(R.id.introduce_book).setOnClickListener(mPagerListener);
-    			v.findViewById(R.id.introduce_chad).setOnClickListener(mPagerListener);
     		}
     		
     		((ViewPager)pager).addView(v, 0);

@@ -4,9 +4,11 @@ package com.mallang.mind;
 
 import com.mallang.mind.db.DbOpenHelper;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +45,7 @@ public class TwoMeditationFragment extends Fragment {
 			timer1 = new CountDownTimer(180*1000, 1000) {
 				@Override
 				public void onFinish() {
-					if(turnCounter>5) {
+					if(turnCounter>3) {
 						//save log
 						mDbOpenHelper.open();
 						String userID = pref.getString("userID", "");
@@ -54,17 +56,17 @@ public class TwoMeditationFragment extends Fragment {
 						text1.setText("Finished");
 		                turnCounter=0;
 						isRun=false;
-						btnStart.setText("Start Timer");
+						btnStart.setBackgroundResource(R.drawable.start);
 		                return;
 					}
 					isRun=false;
 					if(turnCounter%2==0) {
 						text1.setText("Now Player 1, please start");
-						btnStart.setText("Player 1 Start");
+						btnStart.setBackgroundResource(R.drawable.start);
 						return;
 					}
 					text1.setText("Now Player 2, please start");
-					btnStart.setText("Player 2 Start");
+					btnStart.setBackgroundResource(R.drawable.start);
 				}
 
 				@Override
@@ -85,7 +87,7 @@ public class TwoMeditationFragment extends Fragment {
 					}
 					turnCounter++;
 					timer1.start();
-					btnStart.setText("Please Talk...");
+					btnStart.setBackgroundResource(R.drawable.talk);
 					isRun=true;
 				}
 				
@@ -97,6 +99,8 @@ public class TwoMeditationFragment extends Fragment {
 					timer1.cancel();
 					text1.setText("It is canceled");
 					if(turnCounter>0) {
+						Vibrator vibe = (Vibrator) ((MainActivity) getActivity()).getSystemService(Context.VIBRATOR_SERVICE);
+		                vibe.vibrate(500); // 0.5√ 
 						mDbOpenHelper.open();
 						String userID = pref.getString("userID", "");
 		                mDbOpenHelper.insertLog(userID, 2, turnCounter*3);
@@ -104,7 +108,7 @@ public class TwoMeditationFragment extends Fragment {
 					}
 					turnCounter=0;
 					isRun=false;
-					btnStart.setText("Start Timer");
+					btnStart.setBackgroundResource(R.drawable.start);
 				}
 				
 			});
