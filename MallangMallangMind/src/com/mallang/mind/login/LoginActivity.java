@@ -23,6 +23,7 @@ public class LoginActivity extends Activity implements OnClickListener {
     private ImageButton registerBtn;
     private ImageButton findPWBtn;
     private ImageButton skipBtn;
+    private Toast toast;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,8 +52,16 @@ public class LoginActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				mDbOpenHelper.close();
+				SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+				pref = getSharedPreferences("pref", MODE_PRIVATE);
+				if(!pref.contains("userID")) {
+					toast = Toast.makeText(getBaseContext(), "You are new one, please register", Toast.LENGTH_LONG);
+					toast.show();
+					return;
+				}
 				Intent intent = new Intent(getBaseContext(),MainActivity.class);
                 startActivity(intent);
+                finish();
 			}
 			
 		});
@@ -84,7 +93,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	public void loginProcess() {
 		String id = idInput.getText().toString();
 		String pw = passwdInput.getText().toString();
-		Toast toast;
+		
 		if( !mDbOpenHelper.checkId(id) ) {
 			toast = Toast.makeText(getBaseContext(), "There is no match ID, please register", Toast.LENGTH_LONG);
 			toast.show();

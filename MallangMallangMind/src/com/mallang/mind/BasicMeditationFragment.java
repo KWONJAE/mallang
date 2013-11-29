@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -22,14 +23,16 @@ public class BasicMeditationFragment extends Fragment implements OnClickListener
 	Button start;
 	   //매 1초 마다 증가할 정수값
     private int value = 120;
+    private boolean isFinished;
     private CountDownTimer timer;  
     private SharedPreferences pref;
+    private View v;
     @SuppressWarnings("static-access")
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
-		View v = inflater.inflate(R.layout.basicmeditationlayout, container, false);
+    	isFinished=false;
+		v = inflater.inflate(R.layout.basic_medi_layout, container, false);
 		mDbOpenHelper = new DbOpenHelper(this.getActivity().getBaseContext());
 		pref = this.getActivity().getSharedPreferences("pref", this.getActivity().MODE_PRIVATE);
 		start = (Button) v.findViewById(R.id.startbutton);
@@ -50,6 +53,10 @@ public class BasicMeditationFragment extends Fragment implements OnClickListener
        
 			@Override
 			public void onFinish() {
+				isFinished=true;
+				RelativeLayout basicBack = (RelativeLayout) v.findViewById(R.id.basic_medi_back);
+				basicBack.setBackgroundResource(R.drawable.medi_end_back);
+				start.setBackgroundResource(R.drawable.home);
 				Vibrator vibe = (Vibrator) ((MainActivity) getActivity()).getSystemService(Context.VIBRATOR_SERVICE);
                 vibe.vibrate(500); // 0.5초
 				//save log
@@ -71,18 +78,15 @@ public class BasicMeditationFragment extends Fragment implements OnClickListener
 		@Override
 		public void onClick(View v) { //시작 버튼
 			// TODO Auto-generated method stub
-	        switch (v.getId()) {
-
-			
-			case R.id.startbutton:
+	        if (v.getId()==R.id.startbutton) {
+	        	if(isFinished) {
+	        		((MainActivity)getActivity()).switchContent(new MyInfoFragment());
+	        	}
 				value = 120;
 				timer.start();
 				start.setBackgroundResource(R.drawable.finish);
-				break;
-
+				
 			}
-			
-			
 		}
 	
 }
