@@ -7,7 +7,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,8 +15,8 @@ public class FindPasswordActivity extends Activity{
 	private DbOpenHelper mDbOpenHelper;
 	private EditText idInput;
 	private EditText nameInput;
-	private Button findBtn;
-    private Button cancleBtn;
+	private ImageButton findBtn;
+    private ImageButton cancleBtn;
     
     @Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,8 @@ public class FindPasswordActivity extends Activity{
         
         idInput = (EditText) findViewById(R.id.findpw_id_input);
         nameInput = (EditText) findViewById(R.id.findpw_name_input);
-        findBtn = (Button) findViewById(R.id.findpw_btn);
-        cancleBtn = (Button) findViewById(R.id.findpw_cancle_btn);
+        findBtn = (ImageButton) findViewById(R.id.findpw_btn);
+        cancleBtn = (ImageButton) findViewById(R.id.findpw_cancle_btn);
         
         cancleBtn.setOnClickListener(new OnClickListener() {
 			@Override

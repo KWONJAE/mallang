@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,8 +19,8 @@ public class RegisterActivity extends Activity{
 	private EditText nameInput;
     private EditText pwInput;
     private EditText pwConfirmInput;
-    private Button registerBtn;
-    private Button cancleBtn;
+    private ImageButton registerBtn;
+    private ImageButton cancleBtn;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,8 +34,8 @@ public class RegisterActivity extends Activity{
 		nameInput = (EditText) findViewById(R.id.register_name_input);
 		pwInput = (EditText) findViewById(R.id.register_pw_input);
 		pwConfirmInput = (EditText) findViewById(R.id.register_pwconfirm_input);
-		registerBtn = (Button) findViewById(R.id.register_btn);
-		cancleBtn = (Button) findViewById(R.id.register_cancle_btn);
+		registerBtn = (ImageButton) findViewById(R.id.register_btn);
+		cancleBtn = (ImageButton) findViewById(R.id.register_cancel_btn);
 		
 		registerBtn.setOnClickListener(new OnClickListener() {
 			@Override

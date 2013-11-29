@@ -3,6 +3,7 @@
      android:layout_width="fill_parent"
      android:layout_height="fill_parent"
      android:background="@drawable/background"
+     android:gravity="center"
      android:orientation="vertical" >
 
     <ImageView
@@ -12,75 +13,110 @@
         android:layout_gravity="center"
         android:scaleType="fitXY"
         android:src="@drawable/icon" />
+<LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
 
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:text="    아이디: " />
+
+        <EditText
+            android:id="@+id/register_id_input" 
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:background="@drawable/login_background"
+            android:paddingLeft="10dp"
+            android:text="" />
+    </LinearLayout>
+<LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:text=" 이름: " />
+
+        <EditText
+            android:id="@+id/register_name_input" 
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:background="@drawable/login_background"
+            android:paddingLeft="10dp"
+            android:text="" />
+    </LinearLayout>
     <LinearLayout
-         android:orientation="horizontal"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:gravity="center_horizontal">
-        <TextView android:text="  아이디: "
-             android:layout_width="wrap_content" 
-             android:layout_height="wrap_content"/>
-        <EditText android:text="saple@email.com" 
-             android:id="@+id/register_id_input" 
-             android:layout_width="200px" 
-             android:layout_height="wrap_content"/>
-     </LinearLayout> 
-     <LinearLayout
-         android:orientation="horizontal"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:gravity="center_horizontal">
-        <TextView android:text="  이름: "
-             android:layout_width="wrap_content" 
-             android:layout_height="wrap_content"/>
-        <EditText android:text="" 
-             android:id="@+id/register_name_input" 
-             android:layout_width="200px" 
-             android:layout_height="wrap_content"/>
-     </LinearLayout> 
-     <LinearLayout
-         android:orientation="horizontal"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:gravity="center_horizontal">
-        <TextView android:text="  비밀번호: "
-             android:layout_width="wrap_content" 
-             android:layout_height="wrap_content"/>
-        <EditText android:text="" 
-             android:id="@+id/register_pw_input" 
-             android:layout_width="200px" 
-             android:layout_height="wrap_content"
-             android:password="true"/>
-     </LinearLayout>
-     <LinearLayout
-         android:orientation="horizontal"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:gravity="center_horizontal">
-        <TextView android:text="  비밀번호 확인: "
-             android:layout_width="wrap_content" 
-             android:layout_height="wrap_content"/>
-        <EditText android:text="" 
-             android:id="@+id/register_pwconfirm_input" 
-             android:layout_width="200px" 
-             android:layout_height="wrap_content"
-             android:password="true"/>
-     </LinearLayout> 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:text="비밀번호: " />
+
+        <EditText
+            android:id="@+id/register_pw_input" 
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:background="@drawable/login_background"
+            android:password="true"
+            android:paddingLeft="10dp"
+            android:text="" />
+        </LinearLayout>
+         <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal" >
+        
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:text="확인:" />
+
+        <EditText
+            android:id="@+id/register_pwconfirm_input"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:background="@drawable/login_background"
+            android:password="true"
+            android:paddingLeft="10dp"
+            android:text="" />
+    </LinearLayout>
+   
     <LinearLayout
 	      android:orientation="horizontal"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:gravity="center_horizontal">
-	 <Button android:text="회원가입" 
+	 <ImageButton 
 	  android:id="@+id/register_btn" 
-	  android:layout_width="wrap_content" 
-	  android:layout_height="wrap_content"
-	  android:gravity="center_horizontal"/>
-	 <Button android:text="취소" 
-	  android:id="@+id/register_cancle_btn" 
-	  android:layout_width="wrap_content" 
-	  android:layout_height="wrap_content"
-	  android:gravity="center_horizontal"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:gravity="center_horizontal"
+            android:src="@drawable/registerbutton" />
+	  
+	 <ImageButton 
+	     android:id="@+id/register_cancel_btn" 
+	  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:gravity="center_horizontal"
+            android:src="@drawable/cancelbutton"/>
 	    </LinearLayout> 
 </LinearLayout>

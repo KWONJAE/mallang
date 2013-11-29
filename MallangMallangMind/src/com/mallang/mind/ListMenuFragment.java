@@ -20,7 +20,8 @@ public class ListMenuFragment extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		String[] MenuList= {"My Profile","혼자하기","같이하기","History","Tutorial"};
+	
+		String[] MenuList= {"My Profile","혼자하기","같이하기","History","Tutorial","차드멍탄 소개"};
 		ArrayAdapter<String> Adapter = new ArrayAdapter<String>(getActivity(), 
 				android.R.layout.simple_list_item_1, android.R.id.text1, MenuList);
 		setListAdapter(Adapter);
@@ -43,7 +44,7 @@ public class ListMenuFragment extends ListFragment {
 			newContent = new HistoryFragment();
 			break;
 		case 4:
-			
+			newContent = new TutorialPageFragment();
 			break;
 		}
 		if (newContent != null)

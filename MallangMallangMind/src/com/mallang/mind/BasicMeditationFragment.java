@@ -11,18 +11,18 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
 public class BasicMeditationFragment extends Fragment implements OnClickListener {
 	private DbOpenHelper mDbOpenHelper;
-	private TextView title;
-	private Button start;
+	TextView title;
+	Button start;
 	   //매 1초 마다 증가할 정수값
     private int value = 120;
     private CountDownTimer timer;  
     private SharedPreferences pref;
+    @SuppressWarnings("static-access")
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -48,7 +48,6 @@ public class BasicMeditationFragment extends Fragment implements OnClickListener
 		                String userID = pref.getString("userID", "");
 		                mDbOpenHelper.insertLog(userID, 1, 2);
 		                mDbOpenHelper.close();
-		                return;
 		        	}
 		        	value--;
 				}
@@ -77,6 +76,5 @@ public class BasicMeditationFragment extends Fragment implements OnClickListener
 			
 			
 		}
-		
 	
 }

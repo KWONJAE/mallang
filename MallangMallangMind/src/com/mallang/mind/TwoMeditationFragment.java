@@ -10,10 +10,8 @@ import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -21,12 +19,12 @@ public class TwoMeditationFragment extends Fragment {
 	
 	private DbOpenHelper mDbOpenHelper;
 	private TextView text1;
-	private TextView text2;
 	private CountDownTimer timer1;
 	private int turnCounter=0;
 	private Button btnStart, btnEnd;
 	private boolean isRun;
 	private SharedPreferences pref;
+	@SuppressWarnings("static-access")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.timer_main, container, false);
@@ -34,20 +32,17 @@ public class TwoMeditationFragment extends Fragment {
 		
 			turnCounter=0;
 			text1 = (TextView) v.findViewById(R.id.timer_main_text);
-			//text2 = (TextView) getActivity().findViewById(R.id.textView1);
 			btnStart = (Button) v.findViewById(R.id.timer_main_start);
 			btnEnd = (Button) v.findViewById(R.id.timer_main_end);
 			
 			mDbOpenHelper = new DbOpenHelper(this.getActivity().getBaseContext());
 			pref = this.getActivity().getSharedPreferences("pref", this.getActivity().MODE_PRIVATE);
 			isRun=false;
-				                
-            
+			
 			//text2.setText("3min for one person 마지막 3분은 서로 이야기");
 			timer1 = new CountDownTimer(180*1000, 1000) {
 				@Override
 				public void onFinish() {
-					// TODO Auto-generated method stub
 					if(turnCounter>5) {
 						//save log
 						mDbOpenHelper.open();
@@ -62,15 +57,14 @@ public class TwoMeditationFragment extends Fragment {
 						btnStart.setText("Start Timer");
 		                return;
 					}
+					isRun=false;
 					if(turnCounter%2==0) {
 						text1.setText("Now Player 1, please start");
 						btnStart.setText("Player 1 Start");
-						isRun=false;
 						return;
 					}
 					text1.setText("Now Player 2, please start");
 					btnStart.setText("Player 2 Start");
-					isRun=false;
 				}
 
 				@Override
@@ -89,7 +83,6 @@ public class TwoMeditationFragment extends Fragment {
 					if(isRun) {
 						return;
 					}
-					//skip
 					turnCounter++;
 					timer1.start();
 					btnStart.setText("Please Talk...");
@@ -101,7 +94,6 @@ public class TwoMeditationFragment extends Fragment {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					timer1.cancel();
 					text1.setText("It is canceled");
 					if(turnCounter>0) {

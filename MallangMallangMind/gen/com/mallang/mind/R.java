@@ -1030,21 +1030,26 @@ containing a value of this type.
         public static final int abs__toast_frame=0x7f02006f;
         public static final int background=0x7f020070;
         public static final int cancelbutton=0x7f020071;
-        public static final int findpasswdbutton=0x7f020072;
-        public static final int ic_action_github=0x7f020073;
-        public static final int ic_launcher=0x7f020074;
-        public static final int icon=0x7f020075;
-        public static final int login_background=0x7f020076;
-        public static final int loginbutton=0x7f020077;
-        public static final int mainimage=0x7f020078;
-        public static final int mallangpoint=0x7f020079;
-        public static final int new_indicator=0x7f02007a;
-        public static final int profileimage=0x7f02007b;
-        public static final int registerbutton=0x7f02007c;
-        public static final int shadow=0x7f02007d;
-        public static final int skipbutton=0x7f02007e;
-        public static final int slidemenubutton=0x7f02007f;
-        public static final int textedit=0x7f020080;
+        public static final int fantastic=0x7f020072;
+        public static final int findbutton=0x7f020073;
+        public static final int findpasswdbutton=0x7f020074;
+        public static final int ic_action_github=0x7f020075;
+        public static final int ic_launcher=0x7f020076;
+        public static final int icon=0x7f020077;
+        public static final int login_background=0x7f020078;
+        public static final int loginbutton=0x7f020079;
+        public static final int mainimage=0x7f02007a;
+        public static final int mallangpoint=0x7f02007b;
+        public static final int new_indicator=0x7f02007c;
+        public static final int profileimage=0x7f02007d;
+        public static final int registerbutton=0x7f02007e;
+        public static final int shadow=0x7f02007f;
+        public static final int skipbutton=0x7f020080;
+        public static final int slidemenubutton=0x7f020081;
+        public static final int textedit=0x7f020082;
+        public static final int tutorialone=0x7f020083;
+        public static final int tutorialthree=0x7f020084;
+        public static final int tutorialtwo=0x7f020085;
     }
     public static final class id {
         public static final int LinearLayout2=0x7f040040;
@@ -1087,6 +1092,7 @@ containing a value of this type.
         public static final int abs__textButton=0x7f040018;
         public static final int abs__title=0x7f040020;
         public static final int abs__up=0x7f04000b;
+        public static final int bottom=0x7f04006a;
         public static final int content_frame=0x7f04003a;
         public static final int disableHome=0x7f040009;
         public static final int edit_query=0x7f04002b;
@@ -1101,7 +1107,7 @@ containing a value of this type.
         public static final int history_meditype=0x7f040043;
         public static final int historylist=0x7f04003f;
         public static final int homeAsUp=0x7f040006;
-        public static final int imageView1=0x7f04004e;
+        public static final int imageView1=0x7f04004d;
         public static final int info_birth_btn=0x7f040047;
         public static final int info_city_input=0x7f040049;
         public static final int info_gender_spinner=0x7f040046;
@@ -1110,45 +1116,46 @@ containing a value of this type.
         public static final int info_save_btn=0x7f04004a;
         public static final int info_skip_btn=0x7f04004b;
         public static final int left=0x7f040010;
-        public static final int leftslidemenu=0x7f04004c;
         public static final int listMode=0x7f040002;
-        public static final int login_btn=0x7f040051;
-        public static final int login_findpw_btn=0x7f040053;
-        public static final int login_id_input=0x7f04004f;
-        public static final int login_layout_linear=0x7f04004d;
-        public static final int login_passwd_input=0x7f040050;
-        public static final int login_register_btn=0x7f040052;
-        public static final int login_skip_btn=0x7f040054;
+        public static final int ll_title_layout=0x7f04006b;
+        public static final int login_btn=0x7f040050;
+        public static final int login_findpw_btn=0x7f040052;
+        public static final int login_id_input=0x7f04004e;
+        public static final int login_layout_linear=0x7f04004c;
+        public static final int login_passwd_input=0x7f04004f;
+        public static final int login_register_btn=0x7f040051;
+        public static final int login_skip_btn=0x7f040053;
         public static final int margin=0x7f040012;
-        public static final int menu_frame=0x7f040055;
-        public static final int mypage_birth_sex=0x7f040058;
-        public static final int mypage_count=0x7f04005a;
-        public static final int mypage_id=0x7f040057;
-        public static final int mypage_mallang_point=0x7f04005c;
-        public static final int mypage_name=0x7f040056;
-        public static final int mypage_regi_time=0x7f040059;
-        public static final int mypage_time=0x7f04005b;
+        public static final int menu_frame=0x7f040054;
+        public static final int mypage_birth_sex=0x7f040057;
+        public static final int mypage_count=0x7f040059;
+        public static final int mypage_id=0x7f040056;
+        public static final int mypage_mallang_point=0x7f04005b;
+        public static final int mypage_name=0x7f040055;
+        public static final int mypage_regi_time=0x7f040058;
+        public static final int mypage_time=0x7f04005a;
         public static final int normal=0x7f040001;
-        public static final int register_btn=0x7f040061;
-        public static final int register_cancle_btn=0x7f040062;
-        public static final int register_id_input=0x7f04005d;
-        public static final int register_name_input=0x7f04005e;
-        public static final int register_pw_input=0x7f04005f;
-        public static final int register_pwconfirm_input=0x7f040060;
+        public static final int pager=0x7f040069;
+        public static final int register_btn=0x7f040060;
+        public static final int register_cancel_btn=0x7f040061;
+        public static final int register_id_input=0x7f04005c;
+        public static final int register_name_input=0x7f04005d;
+        public static final int register_pw_input=0x7f04005e;
+        public static final int register_pwconfirm_input=0x7f04005f;
         public static final int right=0x7f040011;
-        public static final int row_icon=0x7f040063;
-        public static final int row_title=0x7f040064;
+        public static final int row_icon=0x7f040062;
+        public static final int row_title=0x7f040063;
         public static final int selected_view=0x7f040014;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
-        public static final int slidingmenumain=0x7f040065;
+        public static final int slidingmenumain=0x7f040064;
         public static final int startbutton=0x7f040039;
         public static final int tabMode=0x7f040003;
-        public static final int textView1=0x7f040069;
-        public static final int timer_main_end=0x7f040068;
-        public static final int timer_main_start=0x7f040067;
-        public static final int timer_main_text=0x7f040066;
+        public static final int textView1=0x7f040068;
+        public static final int timer_main_end=0x7f040067;
+        public static final int timer_main_start=0x7f040066;
+        public static final int timer_main_text=0x7f040065;
         public static final int timetext=0x7f040038;
         public static final int title=0x7f040037;
         public static final int useLogo=0x7f040004;
@@ -1188,7 +1195,7 @@ containing a value of this type.
         public static final int historylayout=0x7f03001a;
         public static final int historylistlayout=0x7f03001b;
         public static final int info_register_layout=0x7f03001c;
-        public static final int leftslidemenu=0x7f03001d;
+        public static final int introducechad=0x7f03001d;
         public static final int list=0x7f03001e;
         public static final int login_layout=0x7f03001f;
         public static final int menu=0x7f030020;
@@ -1200,6 +1207,10 @@ containing a value of this type.
         public static final int sherlock_spinner_item=0x7f030026;
         public static final int slidingmenumain=0x7f030027;
         public static final int timer_main=0x7f030028;
+        public static final int tutorialmain=0x7f030029;
+        public static final int tutorialone=0x7f03002a;
+        public static final int tutorialthree=0x7f03002b;
+        public static final int tutorialtwo=0x7f03002c;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
@@ -2429,7 +2440,7 @@ containing a value of this type.
          */
         public static final int[] SherlockSpinner = {
             0x010100af, 0x01010175, 0x01010176, 0x0101017b,
-            0x01010262, 0x010102ac, 0x010102ad, 0x010103ef
+            0x01010262, 0x010102ac, 0x010102ad, 0x010103fd
         };
         /**
           <p>
