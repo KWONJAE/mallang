@@ -4,8 +4,11 @@ mallang
 2013 app contest - SKKU
 
 말랑패밀리의 융합 앱 콘테스트 작품입니다.
+
 제목: 마음이 말랑말랑
+
 종류: 명상
+
 
 To Compile this application.
 
